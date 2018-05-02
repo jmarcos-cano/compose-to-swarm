@@ -9,7 +9,7 @@ to start using this project make sure you follow up the .env.example fill it wit
 cp .env.example .env
 ```
 
-## BUILD
+## Build
 ```bash
 docker-compose -f docker-compose.yml -f docker-compose-build.yml build
 
@@ -17,7 +17,7 @@ docker-compose -f docker-compose.yml -f docker-compose-build.yml push
 
 ```
 
-## START
+## Start
 ```bash
 docker-compose up
 ```
