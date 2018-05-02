@@ -2,25 +2,4 @@ version: "3.5"
 services:
   web:
     build: .
-    command: python app.py
-    environment:
-      REDIS_HOST: redis
-    ports:
-      - target: 5000
-        published: 5000
-    networks:
-      - skynet
-    # volumes:
-    #   - type: volume
-    #     source: counter-volume
-    #     target: /code
-  redis:
-    image: "redis:alpine"
-    networks:
-      skynet:
-
-networks:
-  skynet:
-
-volumes:
-  counter-volume:
+    image: mcano/io-extended
