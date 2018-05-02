@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   web:
-    image: mcano/io-extended
+    image: ${IMAGE_NAME:-mcano/io-extended}
     command: python app.py
     environment:
       REDIS_HOST: redis
