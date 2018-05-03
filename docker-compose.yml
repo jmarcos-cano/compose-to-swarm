@@ -10,6 +10,16 @@ services:
         published: 5000
     networks:
       - skynet
+  deploy:
+      replicas: ${DEPLOYMENT_REPLICAS:-4}
+      restart_policy:
+        condition: any
+      update_config:
+        parallelism: 1
+        delay: 10s
+        order: start-first
+  ports:
+  - 5000:5000
   redis:
     image: "redis:alpine"
     networks:
