@@ -3,7 +3,8 @@ dist: trusty
 
 
 services:
-  - docker # required, but travis uses older version of docker :(
+  - docker 
+# required, but travis uses older version of docker :(
 install:
   - pip install docker-compose
 
