@@ -3,7 +3,7 @@ dist: trusty
 
 
 services:
-  - docker 
+  - docker
 # required, but travis uses older version of docker :(
 install:
   - sudo pip install docker-compose
@@ -14,6 +14,6 @@ jobs:
       script:
       - docker --version
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-      - docker build -t mcano/io18 .
+      - docker-compose -f docker-compose.yml -f docker-compose-build.yml build
       - docker images
-      - docker push mcano/io18
+      - docker-compose -f docker-compose.yml -f docker-compose-build.yml push
