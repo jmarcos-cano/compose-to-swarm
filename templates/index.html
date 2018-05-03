@@ -9,7 +9,7 @@
         padding: 20px;
         overflow: hidden;
         border: none;
-        font: normal 38px/3 "Lucida Console", Monaco, monospace;
+        font: normal 30px/3 "Lucida Console", Monaco, monospace;
         color: rgba(255,255,255,1);
         text-align: center;
         -o-text-overflow: ellipsis;
@@ -21,16 +21,22 @@
         text-shadow: 3px 3px 3px rgba(0,0,0,0.2) ;
         position: absolute; /* or absolute */
         top: 40%;
-        left: 45%;
+        left: 35%;
         }
     .img {
         position: fixed; /* or absolute */
-        left: 44%;
+        left: 34%;
     }
     </style>
     <header>
         <img class="img" src="https://lh3.googleusercontent.com/-hJ2rXeGXaF4/Wql_QzNTb3I/AAAAAAAAb7o/tt92qpBuFkc5uaLLi5lXkC-dQA-ivKdAQCJoC/w1920-h1080/google_io_2018_extended_hashtag_white_16x9_rgb.png" width="487" height="274" >
     </header>
    <body>
-      <div class="enjoy-css">You've visited me '{{ visit_counts }}' times</div>
+      <div class="enjoy-css">
+          Visits: {{ visit_counts }}
+          <br>
+          Hostname: {{hostname}}
+          <br>
+          Task: {{DOCKER_SERVICE_NAME}}
+      </div>
    </body>

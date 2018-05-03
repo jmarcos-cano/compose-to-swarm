@@ -1,4 +1,4 @@
-import  os, redis, time
+import  os, redis, time, platform
 from flask import Flask
 from flask import Flask, render_template
 
@@ -21,7 +21,9 @@ def get_hit_count():
 @app.route('/')
 def hello():
     count = get_hit_count()
-    return render_template('index.html',visit_counts=count)
+    host=platform.node()
+    DOCKER_SERVICE_NAME=os.getenv('DOCKER_SERVICE_NAME', host)
+    return render_template('index.html',visit_counts=count, hostname=host, DOCKER_SERVICE_NAME=DOCKER_SERVICE_NAME)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)

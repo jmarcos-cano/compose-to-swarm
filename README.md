@@ -25,3 +25,28 @@ docker-compose up
 ```
 
 # Docker Swarm mode Usage
+
+## Visualizer
+```bash
+docker service create \
+  --name=viz \
+  --publish=8080:8080/tcp \
+  --constraint=node.role==manager \
+  --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
+  dockersamples/visualizer
+  ```
+
+## Start
+```bash
+docker stack deploy -c docker-compose.yml io18
+```
+
+## Status
+```bash
+docker service ps io18_web
+```
+
+## Scale
+```bash
+docker service scale io18_web=4
+```
