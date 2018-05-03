@@ -1,4 +1,4 @@
-# io18-compose-example
+# io18
 Google I/O 2018 extended example.
 
 # Slides
