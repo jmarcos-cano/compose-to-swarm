@@ -6,7 +6,7 @@ services:
   - docker 
 # required, but travis uses older version of docker :(
 install:
-  - pip install docker-compose
+  - sudo pip install docker-compose
 
 jobs:
   include:
