@@ -5,15 +5,15 @@ Google I/O 2018 extended example.
 1. [Local Environment](#local-environment)
 2. [Local Env with Docker Compose](#docker-compose-usage)
 3. [Production environment with Docker swarm mode (Lab)](#swarm-mode-lab)
-    - Simple service create
-    - scale our service
-    - Simple swarm definition (stack deploy) [.simple]
-    - Environment variables injection [.simple]
-    - Scale our io18_web [.simple]
-    - Deployment replicas [.replicas]
-    - Rolling updates [.rolling]
-    - Limit Host resources [.resources]
-    - Healthcheck and self healing [.health]
+    - [Simple service create](#2-simple-service-create)
+    - Scale the service
+    - [Simple swarm definition (stack deploy)](#3-simple-stack-deploy)
+    - [Environment variables injection](#4-environment-variables-injection)
+    - [Scale our io18_web](#5-scale-web-app)
+    - [Declarative deployment replicas](#6-declarative-deployment-replicas)
+    - [Rolling updates](#7-rolling-updates)
+    - [Limit Host resources](#8-host-limit-resource)
+    - [Healthcheck and self healing](#9-health-check-and-self-healing)
 
 # Slides
 Slides to this repo can be found [here](http://slides.com/marcoscano/io18)
@@ -123,7 +123,7 @@ docker service scale io18_web=4
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 ---
-## 6. Deployment Replicas declarative
+## 6. Declarative Deployment Replicas
 ```bash
 # Inspect the .replicas file and find "deploy: " section
 cat docker-compose.replicas.yml
