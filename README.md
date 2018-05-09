@@ -159,9 +159,7 @@ docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
 ## 5. Scale web app
 
 Want to handle more traffic?
-
 Want to be more resilient?
-
 Want High Availability?
 
 Swarm got you covered
