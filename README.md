@@ -175,6 +175,8 @@ docker service scale io18_web=4
 
 ---
 ## 6. Declarative Deployment Replicas
+Instead of scaling your service everytime, why don't we declare it?
+
 ```bash
 # Inspect the .replicas file and find "deploy: " section
 cat docker-compose.replicas.yml
