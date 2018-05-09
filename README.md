@@ -18,8 +18,7 @@ docker run --name redis -d --network mynetwork redis:alpine
 docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis"  mcano/io18
 
 # OR if you prefer local environment development supported by Docker
-docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis"  -v $(pwd):/code mcano/io18
-
+docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis" -v $(pwd):/code mcano/io18 sh
 ```
 
 

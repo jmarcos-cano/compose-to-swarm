@@ -12,6 +12,14 @@ services:
         published: 5000
     networks:
       - skynet
+    # adds self-healing availability
+    healthcheck:
+      test: wget -q http://localhost:5000/healthz
+      interval: 15s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
     deploy:
       replicas: ${DEPLOYMENT_REPLICAS:-3}
       restart_policy:
