@@ -121,6 +121,11 @@ cd io18
 cat docker-compose.simple.yml
 # deploy it
 docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
+
+# list current services
+docker service ls
+
+
 ```
 
 
