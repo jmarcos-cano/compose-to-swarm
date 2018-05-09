@@ -233,12 +233,19 @@ docker stack deploy -c docker-compose.resources.yml --resolve-image=always io18
 ## 9. Health Check and Self healing
 Auto restarts and health-check can also be possible by adding "healthcheck: "
 
+
 ```bash
+# Run docker ps first to see there's no (healthy)
+docker ps
+
 # inspect .health file and find the "healthcheck:" section, try to understand it
 less docker-compose.health.yml
 
 # Deploy/update this new configuration for your stack
 docker stack deploy -c docker-compose.health.yml --resolve-image=always io18
+
+# after a few seconds run
+docker ps
 ```
 
 Do a: `docker service ps io18_web`, Identify the placement of a container (identify on which node is running).
