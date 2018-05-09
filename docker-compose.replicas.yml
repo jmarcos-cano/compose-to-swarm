@@ -1,0 +1,29 @@
+version: "3.5"
+services:
+  web:
+    image: ${IMAGE_NAME:-mcano/io18}
+    command: python app.py
+    environment:
+      - REDIS_HOST=redis
+      - DOCKER_SERVICE_NAME={{.Service.Name}}.{{.Task.Slot}}
+      - FOO=${FOO:-BAR}
+    ports:
+      - target: 5000
+        published: 5000
+    networks:
+      - skynet
+    deploy:
+      replicas: ${DEPLOYMENT_REPLICAS:-3}
+      restart_policy:
+        # restart under any condition
+        condition: any
+
+  redis:
+    image: "redis:alpine"
+    deploy:
+      replicas: 1
+    networks:
+      skynet:
+
+networks:
+  skynet:

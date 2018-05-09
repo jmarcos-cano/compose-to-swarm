@@ -12,14 +12,6 @@ services:
         published: 5000
     networks:
       - skynet
-    # adds self-healing availability
-    healthcheck:
-      test: wget -O- http://localhost:5000/healthz
-      interval: 15s
-      timeout: 10s
-      retries: 3
-      start_period: 5s
-
     deploy:
       replicas: ${DEPLOYMENT_REPLICAS:-3}
       restart_policy:
@@ -32,17 +24,6 @@ services:
         delay: 10s
         # spin up a new container
         order: start-first
-      resources:
-        # hard limits
-        limits:
-          # 50% of CPU time
-          cpus: '0.50'
-          # up to 200 MB
-          memory: 200M
-        # at least reserve this resources
-        reservations:
-          cpus: '0.25'
-          memory: 10M
 
   redis:
     image: "redis:alpine"
