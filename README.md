@@ -1,10 +1,16 @@
 # io18
 Google I/O 2018 extended example.
 
+## Before you start
+
+1. Go to [http://play-with-docker.com](http://play-with-docker.com) sign in with the user:pass provided in the presentation.
+2. Click on the wrench and select either "3 Managers and 2 Workers" or "5 managers and no workers"
+
+
 # Index
 1. [Local Environment](#local-environment)
 2. [Local Env with Docker Compose](#docker-compose-usage)
-3. [Production environment with Docker swarm mode (Lab)](#swarm-mode-lab)
+3. [Docker Swarm Mode Lab](#swarm-mode-lab)
     - [Simple service create](#2-simple-service-create)
     - Scale the service
     - [Simple swarm definition (stack deploy)](#3-simple-stack-deploy)
@@ -48,7 +54,7 @@ cp .env.example .env
 docker-compose -f docker-compose.yml -f docker-compose-build.yml up --build
 # only build
 docker-compose -f docker-compose.yml -f docker-compose-build.yml build
-# push it  
+# push it
 docker-compose -f docker-compose.yml -f docker-compose-build.yml push
 ```
 
@@ -59,6 +65,8 @@ docker-compose up
 ---
 
 # Swarm Mode lab
+This section will give you the necessary to go full to production with Docker swarm mode.
+
 ## 1. Enable Visualizer on port 8080
 ```bash
 docker service create \
@@ -83,9 +91,17 @@ docker service ls
 
 **Scale the service**
 ```bash
-docker service update --replicas 3 nginx-ws 
+docker service update --replicas 3 nginx-ws
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+
+**Delete the service**
+```bash
+docker service rm nginx-ws
+
+# check for running services
+docker service ls
+```
 
 ---
 ## 3. Simple Stack deploy
@@ -105,7 +121,7 @@ docker service ps io18_web
 ## 4. Environment Variables injection
 > This will give you a small intro to how you can manage configuration per environment (dev,qa,stage,production)
 ```bash
-# inspect the stack file and try to find the directive "FOO=${FOO:-BAR}" 
+# inspect the stack file and try to find the directive "FOO=${FOO:-BAR}"
 cat docker-compose.simple.yml
 
 # inject the new value
@@ -133,7 +149,7 @@ docker stack deploy -c docker-compose.replicas.yml --resolve-image=always io18
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
-I dare you to set more than 3 replicas for io18_web, how? 
+I dare you to set more than 3 replicas for io18_web, how?
 
 ---
 ## 7. Rolling Updates
@@ -143,7 +159,7 @@ Rolling updates let you update your app with zero-downtime.
 
 ```bash
 # inspect .rolling file and find the "update_config:" section, try to understand it
-less docker-compose.rolling.yml 
+less docker-compose.rolling.yml
 
 # Deploy/update this new configuration for your stack
 docker stack deploy -c docker-compose.rolling.yml --resolve-image=always io18
@@ -153,7 +169,7 @@ docker stack deploy -c docker-compose.rolling.yml --resolve-image=always io18
 
 #### Lets force update to see the rolling updates
 
-```bash 
+```bash
 # graceful full restart of your app
 docker service update --force io18_web
 ```
@@ -165,7 +181,7 @@ One can prevent memory starvation or CPU consumption of your app by adding "reso
 
 ```bash
 # inspect .resources file and find the "resources:" section, try to understand it
-less docker-compose.resources.yml 
+less docker-compose.resources.yml
 
 # Deploy/update this new configuration for your stack
 docker stack deploy -c docker-compose.resources.yml --resolve-image=always io18
@@ -177,7 +193,7 @@ Auto restarts and health-check can also be possible by adding "healthcheck: "
 
 ```bash
 # inspect .health file and find the "healthcheck:" section, try to understand it
-less docker-compose.health.yml 
+less docker-compose.health.yml
 
 # Deploy/update this new configuration for your stack
 docker stack deploy -c docker-compose.health.yml --resolve-image=always io18
@@ -187,7 +203,7 @@ Do a: `docker service ps io18_web`, Identify the placement of a container (ident
 
 Jump into that node and run `docker ps` find the container and its ID (first column), kill it and see how it self heals
 ```bash
-docker kill <container ID> 
+docker kill <container ID>
 ```
 
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.
