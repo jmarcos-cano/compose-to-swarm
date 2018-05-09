@@ -23,7 +23,9 @@ def hello():
     count = get_hit_count()
     host=platform.node()
     DOCKER_SERVICE_NAME=os.getenv('DOCKER_SERVICE_NAME', host)
-    return render_template('index.html',visit_counts=count, hostname=host, DOCKER_SERVICE_NAME=DOCKER_SERVICE_NAME)
+    FOO=os.getenv('FOO', 'unset')
+
+    return render_template('index.html',visit_counts=count, hostname=host, DOCKER_SERVICE_NAME=DOCKER_SERVICE_NAME, FOO=FOO)
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True)
