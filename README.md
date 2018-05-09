@@ -249,3 +249,5 @@ docker kill <container ID>
 ```
 
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.
+
+> 🥇 I dare you to do a rolling update with healthcheck included and see what happens, can you predict what will happen ahead of time?
