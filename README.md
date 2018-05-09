@@ -109,6 +109,12 @@ docker service ls
 
 ---
 ## 3. Simple Stack deploy
+
+Make sure to clone the repo
+```bash
+git clone https://github.com/jmarcos-cano/io18.git
+```
+
 ```bash
 # inspect the stack file and try to understand it
 cat docker-compose.simple.yml
