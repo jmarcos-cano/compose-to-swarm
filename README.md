@@ -129,9 +129,9 @@ docker service ls
 ```
 
 
+> Go to your app (click in your upper link port 500) and see how the app looks like. !
+
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
-
-
 
 Show current status
 ```bash
