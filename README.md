@@ -153,7 +153,7 @@ docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
 ```
 <br>
 
-> 💡 Dare you to put your own Text there, see how sometimes the application becomes unaccessible?
+> 🥇 Dare you to put your own Text there, see how sometimes the application becomes unaccessible?
 
 ---
 ## 5. Scale web app
@@ -187,7 +187,7 @@ docker stack deploy -c docker-compose.replicas.yml --resolve-image=always io18
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 <br>
 
-> 💡 I dare you to set more than 3 replicas for io18_web, how?
+> 🥇 I dare you to set more than 3 replicas for io18_web, how?
 
 ---
 ## 7. Rolling Updates
