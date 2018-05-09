@@ -113,6 +113,7 @@ docker service ls
 Make sure to clone the repo
 ```bash
 git clone https://github.com/jmarcos-cano/io18.git
+cd io18
 ```
 
 ```bash
@@ -121,6 +122,8 @@ cat docker-compose.simple.yml
 # deploy it
 docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
 ```
+> Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+
 
 Show current status
 ```bash
