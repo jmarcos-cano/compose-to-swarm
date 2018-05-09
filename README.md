@@ -90,6 +90,7 @@ docker service create --name nginx-ws -p 80:80 nginx
 docker service ls
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+> Click also on Port 80 (Nginx) - it should say "Welcome to Nginx"
 
 **Scale the service**
 ```bash
