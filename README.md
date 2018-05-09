@@ -146,7 +146,7 @@ docker service ps io18_web
 cat docker-compose.simple.yml
 
 # inject the new value
-export FOO="Hello io18"
+export FOO="Hola Edmundo"
 
 # deploy it and see it update automatically
 docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
