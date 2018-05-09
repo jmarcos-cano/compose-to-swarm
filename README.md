@@ -192,8 +192,9 @@ docker stack deploy -c docker-compose.replicas.yml --resolve-image=always io18
 ---
 ## 7. Rolling Updates
 Rolling updates let you update your app with zero-downtime.
+<br>
 
-> v1 has been running for 2 weeks now and you are ready to ship your new and hottest feature on v2, with rolling updates you can easily ship v2 let it coexist with v1 until v1 gets fully drain (removed) and v2 gets out.
+> 💡 v1 has been running for 2 weeks now and you are ready to ship your new and hottest feature on v2, with rolling updates you can easily ship v2 let it coexist with v1 until v1 gets fully drain (removed) and v2 gets out.
 
 ```bash
 # inspect .rolling file and find the "update_config:" section, try to understand it
