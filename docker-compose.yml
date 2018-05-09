@@ -27,9 +27,9 @@ services:
       update_config:
         # update one task at a time
         parallelism: 1
-        # update after 10s passed
+        # update after 10s passed and task ainer is healthy
         delay: 10s
-        # spin up a new container
+        # spin up a new container first
         order: start-first
       resources:
         # hard limits
