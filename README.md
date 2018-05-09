@@ -89,7 +89,7 @@ docker service create --name nginx-ws -p 80:80 nginx
 # List the current services
 docker service ls
 ```
-> Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+> ⚠️ Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 > Click also on Port 80 (Nginx) - it should say "Welcome to Nginx"
 
@@ -127,9 +127,9 @@ docker service ls
 
 
 ```
+<br>
 
-
-> Go to your app (click in your upper link port 500) and see how the app looks like. !
+> ⚠️ Go to your app (click in your upper link port 500) and see how the app looks like. !
 
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
@@ -169,7 +169,7 @@ docker service scale io18_web=4
 ```
 <br>
 
-> Go to your app (click in your upper link port 500) and see how which task/container responds
+> ⚠️ Go to your app (click in your upper link port 500) and see how which task/container responds
 
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
