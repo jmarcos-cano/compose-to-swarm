@@ -75,8 +75,10 @@ docker service create \
   --constraint=node.role==manager \
   --mount=type=bind,src=/var/run/docker.sock,dst=/var/run/docker.sock \
   dockersamples/visualizer
+
+# wait until it says "service converged"
 ```
-> Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+>  go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 ---
 ## 2. Simple service create
