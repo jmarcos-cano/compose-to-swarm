@@ -152,6 +152,8 @@ export FOO="Hola Edmundo"
 docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
 ```
 
+> Dare you to put your own Text there, see how sometimes the application becomes unaccessible?
+
 ---
 ## 5. Scale web app
 ```bash
