@@ -6,6 +6,12 @@ Google I/O 2018 extended example.
 1. Go to [http://play-with-docker.com](http://play-with-docker.com) sign in with the user:pass provided in the presentation.
 2. Click on the wrench and select either "3 Managers and 2 Workers" or "5 managers and no workers"
 
+3. Make sure to clone the repo in the swarm nodes (PWD)
+  ```bash
+  git clone https://github.com/jmarcos-cano/io18.git
+  cd io18
+  ```
+
 
 # Index
 1. [Local Environment](#local-environment)
@@ -110,11 +116,7 @@ docker service ls
 ---
 ## 3. Simple Stack deploy
 
-Make sure to clone the repo
-```bash
-git clone https://github.com/jmarcos-cano/io18.git
-cd io18
-```
+
 
 ```bash
 # inspect the stack file and try to understand it
