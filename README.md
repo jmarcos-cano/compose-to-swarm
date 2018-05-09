@@ -10,7 +10,7 @@ Google I/O 2018 extended example.
 # Index
 1. [Local Environment](#local-environment)
 2. [Local Env with Docker Compose](#docker-compose-usage)
-3. [Docker Swarm Mode Lab](#swarm-mode-lab)
+3. [Docker Swarm Mode - Lab](#swarm-mode-lab)
     - [Simple service create](#2-simple-service-create)
     - Scale the service
     - [Simple swarm definition (stack deploy)](#3-simple-stack-deploy)
