@@ -211,7 +211,7 @@ Do this how many times you need in order to see it working.
 
 ```bash
 # graceful full restart of your app
-docker service update --force io18_web
+time docker service update --force io18_web
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
@@ -257,4 +257,4 @@ docker kill <container ID>
 
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.
 
-> 🥇 I dare you to do a rolling update with healthcheck included and see what happens, can you predict what will happen ahead of time?
+> 🥇 I dare you to do a rolling update with healthcheck included and see what happens, can you predict what will happen ahead of 'time'?
