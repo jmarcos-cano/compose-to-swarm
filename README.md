@@ -157,9 +157,20 @@ docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
 
 ---
 ## 5. Scale web app
+
+Want to handle more traffic?
+Want to be more resilient?
+Want High Availability?
+
+Swarm got you covered
+
 ```bash
 docker service scale io18_web=4
 ```
+<br>
+
+> Go to your app (click in your upper link port 500) and see how which task/container responds
+
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 ---
