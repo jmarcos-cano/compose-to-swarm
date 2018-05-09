@@ -207,12 +207,15 @@ docker stack deploy -c docker-compose.rolling.yml --resolve-image=always io18
 > press 'q' to exit from 'less'
 
 #### Lets force update to see the rolling updates
+Do this how many times you need in order to see it working.
 
 ```bash
 # graceful full restart of your app
 docker service update --force io18_web
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+
+
 
 ---
 ## 8. Host limit resource
