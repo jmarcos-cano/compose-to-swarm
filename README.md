@@ -6,7 +6,8 @@ Google I/O 2018 extended example.
 1. Go to [http://play-with-docker.com](http://play-with-docker.com) sign in with the user:pass provided in the presentation.
 2. Click on the wrench and select either "3 Managers and 2 Workers" or "5 managers and no workers"
 
-3. Make sure to clone the repo in the swarm nodes (PWD)
+3. Unless instructed run all the commands on the first node.
+4. Make sure to clone the repo in the swarm nodes (PWD)
   ```bash
   git clone https://github.com/jmarcos-cano/io18.git
   cd io18
@@ -264,8 +265,8 @@ docker kill <container ID>
 
 ### Extra
 
-Can you explain why this times do not match up? 
-```bash 
+Can you explain why this times do not match up?
+```bash
 docker stack deploy -c docker-compose.rolling.yml --resolve-image=always io18
 
 time docker service update --force io18_web
