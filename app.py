@@ -5,6 +5,7 @@ from flask import Flask, render_template
 app = Flask(__name__)
 
 REDIS_HOST=os.getenv('REDIS_HOST', 'redis')
+
 cache = redis.Redis(host=REDIS_HOST, port=6379)
 
 def get_hit_count():
@@ -14,7 +15,8 @@ def get_hit_count():
             return cache.incr('hits')
         except redis.exceptions.ConnectionError as exc:
             if retries == 0:
-                raise exc
+                #raise exc
+                return "'No Redis Connection'"
             retries -= 1
             time.sleep(0.5)
 
