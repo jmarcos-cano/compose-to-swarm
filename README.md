@@ -98,13 +98,18 @@ docker service ls
 ```
 > ⚠️ Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
-> Click also on Port 80 (Nginx) - it should say "Welcome to Nginx"
+> ⚠️  Click also on Port 80 (Nginx) - it should say "Welcome to Nginx"
 
 **Scale the service**
 ```bash
 docker service update --replicas 3 nginx-ws
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+
+**Checking service logs**
+```bash
+docker service logs nginx-ws
+```
 
 **Delete the service**
 ```bash
