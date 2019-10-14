@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import  os, redis, time, platform
 from flask import Flask
 from flask import Flask, render_template
@@ -18,13 +19,15 @@ def get_hit_count():
                 #raise exc
                 return "'No Redis Connection'"
             retries -= 1
-            time.sleep(0.5)
+            #time.sleep(0.1)
 
 @app.route('/')
 def hello():
     count = get_hit_count()
     host=platform.node()
     DOCKER_SERVICE_NAME=os.getenv('DOCKER_SERVICE_NAME', host)
+    if "{{" in DOCKER_SERVICE_NAME or "}}" in DOCKER_SERVICE_NAME:
+        DOCKER_SERVICE_NAME="N/A"
     FOO=os.getenv('FOO', 'unset')
     return render_template('index.html',visit_counts=count, hostname=host, DOCKER_SERVICE_NAME=DOCKER_SERVICE_NAME, FOO=FOO)
 

@@ -1,8 +1,16 @@
 version: "3.5"
+
+
+networks:
+  skynet:
+
+
 services:
   web:
-    image: ${IMAGE_NAME:-mcano/io18}
-    build: ./
+    image: ${IMAGE_NAME:-mcano/docker:intro}
+    build: .
+    volumes:
+        - ./:/code
     environment:
       - REDIS_HOST=redis
       - DOCKER_SERVICE_NAME={{.Service.Name}}.{{.Task.Slot}}
@@ -44,6 +52,7 @@ services:
           cpus: '0.25'
           memory: 10M
 
+
   redis:
     image: "redis:alpine"
     deploy:
@@ -51,5 +60,3 @@ services:
     networks:
       skynet:
 
-networks:
-  skynet:
