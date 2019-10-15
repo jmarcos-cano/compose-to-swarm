@@ -11,9 +11,12 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ${DOCKER_IMAGE_NAME}
+      run: |
+        echo "BUILDING => ${DOCKER_IMAGE_NAME}"
+        docker build . --file Dockerfile --tag ${DOCKER_IMAGE_NAME}
+
       env:
-        - DOCKER_IMAGE_NAME: "mcano/docker:intro"
+        DOCKER_IMAGE_NAME: "mcano/docker:intro"
     - name: docker-compose config
       run: docker-compose config
 
