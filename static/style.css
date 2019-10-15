@@ -15,6 +15,12 @@ body {
 	top: 15%;
 	text-align: center;
 }
+
+img.resize {
+    max-width: 25%;
+    max-height: 25%;
+}
+
 h1 {
 	font-weight: 1500;
 }

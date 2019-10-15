@@ -1,13 +1,12 @@
 <!doctype html>
 <html>
     <style>
-    img.resize {
-        max-width:25%;
-        max-height:25%;
-    }
+        body{
+            font-family: "Exo", sans-serif;
+        }
     </style>
     <head>
-            <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
             <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Exo&amp;display=swap'>
             <link rel="stylesheet" href="static/style.css">
@@ -18,16 +17,19 @@
 
         <div class="container">
             <img class="img center resize" src="static/docker.png" >
+            <br><br><br>
 
-            <h1>Docker Intro</h1>
+            <h1>Docker Intro</h1></li>
             <br>
-            <h3><bold>Visitas:</bold> {{ visit_counts }} </h3>
 
-            <h3>Hostname: {{hostname}}</h3>
+                <h3>Visitas:   {{ visit_counts }} </h3>
 
-            <h3>Task: {{DOCKER_SERVICE_NAME}}</h3>
+                <h3>Hostname:  {{hostname}}</h3>
 
-            <h3>FOO: {{FOO}}</h3>
+                <h3>Task: {{DOCKER_SERVICE_NAME}}</h3>
+
+                <h3>FOO: {{FOO}}</h3>
+
             <br>
             <h4>Marcos Cano @<a href="https://twitter.com/marcos_kno">marcos_kno</a></h2>
       </div>
