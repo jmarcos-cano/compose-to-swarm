@@ -1,7 +1,7 @@
 version: "3.5"
 services:
   web:
-    image: ${IMAGE_NAME:-mcano/io18}
+    image: ${IMAGE_NAME:-mcano/docker:intro}
     environment:
       - REDIS_HOST=redis
       - DOCKER_SERVICE_NAME={{.Service.Name}}.{{.Task.Slot}}

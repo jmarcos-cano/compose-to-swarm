@@ -1,16 +1,17 @@
 # docker_intro
-Google I/O 2018 extended example.
+Docker Intro for not beginners.
+
 
 ## Before you start
 
-1. Go to [http://play-with-docker.com](http://play-with-docker.com) sign in with the user:pass provided in the presentation.
+1. Go to [http://play-with-docker.com](http://play-with-docker.com) sign in with your user:pass (create account if needed).
 2. Click on the wrench and select either "3 Managers and 2 Workers" or "5 managers and no workers"
 
 3. Unless instructed run all the commands on the first node.
 4. Make sure to clone the repo in the swarm nodes (PWD)
   ```bash
-  git clone https://github.com/jmarcos-cano/docker_intro.git
-  cd docker_intro
+  git clone https://github.com/jmarcos-cano/compose-swarm.git
+  cd compose-swarm
   ```
 
 
@@ -24,6 +25,7 @@ Google I/O 2018 extended example.
     - [Docker Compose](#docker-compose)
       - [Build](#build)
       - [Start](#start)
+  - [---](#)
 - [Swarm Mode lab](#swarm-mode-lab)
   - [1. Enable Visualizer on port 8080](#1-enable-visualizer-on-port-8080)
   - [2. Simple service create](#2-simple-service-create)
@@ -51,10 +53,10 @@ docker network create mynetwork
 docker run --name redis -d --network mynetwork redis:alpine
 
 # create the app container, expose it in a different port
-docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis"  mcano/docker_intro
+docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis"  mcano/docker:intro
 
 # OR if you prefer local environment development supported by Docker
-docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis" -v $(pwd):/code mcano/docker_intro sh
+docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis" -v $(pwd):/code mcano/docker:intro sh
 ```
 
 ### Docker Compose
@@ -78,6 +80,8 @@ docker-compose -f docker-compose.yml -f docker-compose-build.yml push
 ```bash
 docker-compose up
 ```
+
+---
 ---
 
 # Swarm Mode lab
