@@ -12,7 +12,7 @@ jobs:
     - uses: actions/checkout@v1
     - name: Build the Docker image
       run: |
-        docker login -u $DOCKER_USER -p "${secrets.DOCKER_PASSWORD}"
+        docker login -u $DOCKER_USER -p "$${secrets.DOCKER_PASSWORD}"
         echo "BUILDING => ${DOCKER_IMAGE_NAME}"
         docker build . --file Dockerfile --tag ${DOCKER_IMAGE_NAME}
       env:
