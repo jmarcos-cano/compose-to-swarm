@@ -1,4 +1,4 @@
-# io18
+# docker_intro
 Google I/O 2018 extended example.
 
 ## Before you start
@@ -9,27 +9,36 @@ Google I/O 2018 extended example.
 3. Unless instructed run all the commands on the first node.
 4. Make sure to clone the repo in the swarm nodes (PWD)
   ```bash
-  git clone https://github.com/jmarcos-cano/io18.git
-  cd io18
+  git clone https://github.com/jmarcos-cano/docker_intro.git
+  cd docker_intro
   ```
 
 
 # Index
-1. [Local Environment](#local-environment)
-2. [Local Env with Docker Compose](#docker-compose-usage)
-3. [Docker Swarm Mode - Lab](#swarm-mode-lab)
-    - [Simple service create](#2-simple-service-create)
-    - Scale the service
-    - [Simple swarm definition (stack deploy)](#3-simple-stack-deploy)
-    - [Environment variables injection](#4-environment-variables-injection)
-    - [Scale our io18_web](#5-scale-web-app)
-    - [Declarative deployment replicas](#6-declarative-deployment-replicas)
-    - [Rolling updates](#7-rolling-updates)
-    - [Limit Host resources](#8-host-limit-resource)
-    - [Healthcheck and self healing](#9-health-check-and-self-healing)
+- [docker_intro](#dockerintro)
+  - [Before you start](#before-you-start)
+- [Index](#index)
+- [Slides](#slides)
+- [Local Environment](#local-environment)
+    - [Merely docker runs](#merely-docker-runs)
+    - [Docker Compose](#docker-compose)
+      - [Build](#build)
+      - [Start](#start)
+- [Swarm Mode lab](#swarm-mode-lab)
+  - [1. Enable Visualizer on port 8080](#1-enable-visualizer-on-port-8080)
+  - [2. Simple service create](#2-simple-service-create)
+  - [3. Simple Stack deploy](#3-simple-stack-deploy)
+  - [4. Environment Variables injection](#4-environment-variables-injection)
+  - [5. Scale web app](#5-scale-web-app)
+  - [6. Declarative Deployment Replicas](#6-declarative-deployment-replicas)
+  - [7. Rolling Updates](#7-rolling-updates)
+      - [Lets force update to see the rolling updates](#lets-force-update-to-see-the-rolling-updates)
+  - [8. Host limit resource](#8-host-limit-resource)
+  - [9. Health Check and Self healing](#9-health-check-and-self-healing)
+    - [Extra](#extra)
 
 # Slides
-Slides to this repo can be found [here](http://slides.com/marcoscano/io18)
+Slides to this repo can be found [here](http://slides.com/marcoscano/docker_intro)
 
 # Local Environment
 
@@ -42,10 +51,10 @@ docker network create mynetwork
 docker run --name redis -d --network mynetwork redis:alpine
 
 # create the app container, expose it in a different port
-docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis"  mcano/io18
+docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis"  mcano/docker_intro
 
 # OR if you prefer local environment development supported by Docker
-docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis" -v $(pwd):/code mcano/io18 sh
+docker run -p 5500:5000 -it --network mynetwork -e "REDIS_HOST=redis" -v $(pwd):/code mcano/docker_intro sh
 ```
 
 ### Docker Compose
@@ -128,7 +137,7 @@ docker service ls
 # inspect the stack file and try to understand it
 cat docker-compose.simple.yml
 # deploy it
-docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.simple.yml --resolve-image=always --with-registry-auth intro
 
 # list current services
 docker service ls
@@ -143,7 +152,7 @@ docker service ls
 
 Show current status
 ```bash
-docker service ps io18_web
+docker service ps docker_intro_web
 ```
 
 ---
@@ -157,7 +166,7 @@ cat docker-compose.simple.yml
 export FOO="Hola Edmundo"
 
 # deploy it and see it update automatically
-docker stack deploy -c docker-compose.simple.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.simple.yml --resolve-image=always docker_intro
 ```
 <br>
 
@@ -173,7 +182,7 @@ Want High Availability?
 Swarm got you covered
 
 ```bash
-docker service scale io18_web=4
+docker service scale docker_intro_web=4
 ```
 <br>
 
@@ -190,12 +199,12 @@ Instead of scaling your service everytime, why don't we declare it?
 cat docker-compose.replicas.yml
 
 # Deploy new update for the stack
-docker stack deploy -c docker-compose.replicas.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.replicas.yml --resolve-image=always docker_intro
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 <br>
 
-> 🥇 I dare you to set more than 3 replicas for io18_web, how?
+> 🥇 I dare you to set more than 3 replicas for docker_intro_web, how?
 
 ---
 ## 7. Rolling Updates
@@ -209,7 +218,7 @@ Rolling updates let you update your app with zero-downtime.
 less docker-compose.rolling.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.rolling.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.rolling.yml --resolve-image=always docker_intro
 
 ```
 > press 'q' to exit from 'less'
@@ -219,7 +228,7 @@ Do this how many times you need in order to see it working.
 
 ```bash
 # graceful full restart of your app
-docker service update --force io18_web
+docker service update --force docker_intro_web
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
@@ -234,7 +243,7 @@ One can prevent memory starvation or CPU consumption of your app by adding "reso
 less docker-compose.resources.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.resources.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.resources.yml --resolve-image=always docker_intro
 
 ```
 
@@ -250,13 +259,13 @@ docker ps
 less docker-compose.health.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.health.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.health.yml --resolve-image=always docker_intro
 
 # after a few seconds run
 docker ps
 ```
 
-Do a: `docker service ps io18_web`, Identify the placement of a container (identify on which node is running).
+Do a: `docker service ps docker_intro_web`, Identify the placement of a container (identify on which node is running).
 
 Jump into that node and run `docker ps` find the container and its ID (first column), kill it and see how it self heals
 ```bash
@@ -272,12 +281,12 @@ docker kill <container ID>
 
 Can you explain why this times do not match up?
 ```bash
-docker stack deploy -c docker-compose.rolling.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.rolling.yml --resolve-image=always docker_intro
 
-time docker service update --force io18_web
+time docker service update --force docker_intro_web
 
 
-docker stack deploy -c docker-compose.health.yml --resolve-image=always io18
+docker stack deploy -c docker-compose.health.yml --resolve-image=always docker_intro
 
-time docker service update --force io18_web
+time docker service update --force docker_intro_web
 ```

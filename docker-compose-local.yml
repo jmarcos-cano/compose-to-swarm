@@ -2,6 +2,6 @@ version: "3.5"
 services:
   web:
     build: .
-    image: ${IMAGE_NAME:-mcano/io18}
+    image: ${IMAGE_NAME:-mcano/docker:intro}
     volumes:
         - ./:/code
