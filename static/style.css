@@ -11,13 +11,20 @@ body {
 }
 .container {
 	width: 100%;
-	position: absolute;
-	top: 35%;
+	position: relative;
+	top: 15%;
 	text-align: center;
 }
 h1 {
-	font-weight: 900;
+	font-weight: 1500;
 }
+h2 {
+    font-weight: 950;
+}
+h2 {
+    font-weight: 700;
+}
+
 a {
 	text-decoration: none;
 	color: #212121;

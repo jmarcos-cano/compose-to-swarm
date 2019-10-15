@@ -1,13 +1,29 @@
 #!/usr/bin/env python3
 import  os, redis, time, platform
-from flask import Flask
-from flask import Flask, render_template
+from flask import Flask, make_response, render_template
+from functools import wraps, update_wrapper
+from datetime import datetime
 
 app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 REDIS_HOST=os.getenv('REDIS_HOST', 'redis')
 
 cache = redis.Redis(host=REDIS_HOST, port=6379)
+
+
+def nocache(view):
+    @wraps(view)
+    def no_cache(*args, **kwargs):
+        response = make_response(view(*args, **kwargs))
+        response.headers['Last-Modified'] = datetime.now()
+        response.headers['Cache-Control'] = 'no-store, no-cache, must-revalidate, post-check=0, pre-check=0, max-age=0'
+        response.headers['Pragma'] = 'no-cache'
+        response.headers['Expires'] = '-1'
+        return response
+
+    return update_wrapper(no_cache, view)
+
 
 def get_hit_count():
     retries = 5
@@ -22,6 +38,7 @@ def get_hit_count():
             #time.sleep(0.1)
 
 @app.route('/')
+@nocache
 def hello():
     count = get_hit_count()
     host=platform.node()

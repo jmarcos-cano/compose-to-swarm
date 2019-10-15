@@ -1,5 +1,11 @@
 <!doctype html>
 <html>
+    <style>
+    img.resize {
+        max-width:25%;
+        max-height:25%;
+    }
+    </style>
     <head>
             <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
 
@@ -8,12 +14,14 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
     </head>
 
-
    <body>
-        <div class="container ">
+
+        <div class="container">
+            <img class="img center resize" src="static/docker.png" >
+
             <h1>Docker Intro</h1>
             <br>
-            <h3>Visitas: {{ visit_counts }} </h3>
+            <h3><bold>Visitas:</bold> {{ visit_counts }} </h3>
 
             <h3>Hostname: {{hostname}}</h3>
 

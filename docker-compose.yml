@@ -23,7 +23,7 @@ services:
     # adds self-healing availability
     healthcheck:
       test: wget -O- http://localhost:5000/healthz
-      interval: 15s
+      interval: 30s
       timeout: 10s
       retries: 3
       start_period: 5s
