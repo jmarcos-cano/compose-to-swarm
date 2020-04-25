@@ -10,7 +10,7 @@ repo_url: https://github.com/jmarcos-cano/compose-to-swarm
 nav:
   - Home: index.md
   - Single Engine:
-      - "Simple Docker": "local-simple.md"
+      - "Simple Docker": "docker.md"
       - "Docker Compose": "docker-compose.md"
       - "Awesome Compose": "awesome-compose.md"
   - Multi Engine:
@@ -60,9 +60,18 @@ markdown_extensions:
   - pymdownx.magiclink
   - pymdownx.caret
   - pymdownx.critic
-  - pymdownx.superfences
   - pymdownx.details
   - pymdownx.smartsymbols
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
 
 
 # use_directory_urls: true
+
+extra_css:
+  - https://unpkg.com/mermaid@7.1.2/dist/mermaid.css
+extra_javascript:
+  - https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js

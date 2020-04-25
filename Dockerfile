@@ -4,13 +4,13 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 
-COPY requirements.txt /tmp
+COPY app/requirements.txt /tmp
 RUN pip install -r /tmp/requirements.txt
 
 
-COPY . /code
+COPY app/ /code
 WORKDIR /code
-CMD ["python", "app.py"]
+CMD ["python", "server.py"]
 
 EXPOSE 5000
 

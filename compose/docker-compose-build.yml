@@ -1,7 +1,8 @@
 version: "3.5"
 services:
   web:
-    build: .
+    build:
+      context: .
     image: ${IMAGE_NAME:-mcano/docker:intro}
     volumes:
         - ./:/code
