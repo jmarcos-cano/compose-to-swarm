@@ -25,7 +25,7 @@ Docker Intro for not beginners.
     - [Docker Compose](#docker-compose)
       - [Build](#build)
       - [Start](#start)
-  - [---](#)
+  - [---](#hr)
 - [Swarm Mode lab](#swarm-mode-lab)
   - [1. Enable Visualizer on port 8080](#1-enable-visualizer-on-port-8080)
   - [2. Simple service create](#2-simple-service-create)
@@ -40,7 +40,7 @@ Docker Intro for not beginners.
     - [Extra](#extra)
 
 # Slides
-Slides to this repo can be found [here](http://slides.com/marcoscano/docker_intro)
+Slides to this repo can be found [here](https://slides.com/marcoscano/io18)
 
 # Local Environment
 

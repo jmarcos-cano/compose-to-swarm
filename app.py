@@ -11,7 +11,6 @@ REDIS_HOST=os.getenv('REDIS_HOST', 'redis')
 
 cache = redis.Redis(host=REDIS_HOST, port=6379)
 
-
 def nocache(view):
     @wraps(view)
     def no_cache(*args, **kwargs):
@@ -46,9 +45,11 @@ def hello():
     if "{{" in DOCKER_SERVICE_NAME or "}}" in DOCKER_SERVICE_NAME:
         DOCKER_SERVICE_NAME="N/A"
     FOO=os.getenv('FOO', 'unset')
-    return render_template('index.html',visit_counts=count, hostname=host, DOCKER_SERVICE_NAME=DOCKER_SERVICE_NAME, FOO=FOO)
+    REDIS_HOST=os.getenv("REDIS_HOST",'unset')
+    print(f"Getting visits! {count}")
+    return render_template('index.html',visit_counts=count, hostname=host, DOCKER_SERVICE_NAME=DOCKER_SERVICE_NAME, FOO=FOO , redis_host=REDIS_HOST)
 
-@app.route('/healthz')
+@app.route('/health')
 def health():
     return "Im healthy"
 

@@ -15,6 +15,6 @@ jobs:
       - docker --version
       - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
       - cp .env.example .env
-      - docker-compose -f docker-compose.yml -f docker-compose-build.yml build
+      - docker-compose -f docker-compose.yml -f extra/docker-compose-build.yml build
       - docker images
-      - docker-compose -f docker-compose.yml -f docker-compose-build.yml push
+      - docker-compose -f docker-compose.yml -f extra/docker-compose-build.yml push
