@@ -775,7 +775,7 @@ docker ps
 </pre></div></p>
 <details class="info"><summary>info</summary><p>Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.</p>
 </details>
-<h2 id="full-production-lb">Full Production + <a href="http://138-197-49-123.nip.io/">LB</a><a class="headerlink" href="#full-production-lb" title="Permanent link">&para;</a></h2>
+<h2 id="full-production-lb">Full Production + <a href="http://138-197-49-123.nip.io/make">LB</a><a class="headerlink" href="#full-production-lb" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span>docker stack deploy -c &lt;(docker-compose --env-file .configs/production.env -f docker-compose.yml config ) --resolve-image=always --with-registry-auth compose_swarm_prod
 
 open http://138-197-49-123.nip.io/
