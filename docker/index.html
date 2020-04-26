@@ -65,6 +65,8 @@
     
       <link rel="stylesheet" href="https://unpkg.com/mermaid@7.1.2/dist/mermaid.css">
     
+      <link rel="stylesheet" href="../css/extra.css">
+    
     
       
     
@@ -284,15 +286,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#if-we-wanted-to-run-it-just-with-docker" class="md-nav__link">
-    If we wanted to run it just with docker
+  <a href="#just-docker-run" class="md-nav__link">
+    Just docker run?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#merely-docker-runs" class="md-nav__link">
-    Merely docker runs
+  <a href="#fixed-docker-runs" class="md-nav__link">
+    Fixed docker runs
   </a>
   
 </li>
@@ -362,6 +364,18 @@
 
 
   <li class="md-nav__item">
+    <a href="../intro-swarm/" title="Intro Docker Swarm" class="md-nav__link">
+      Intro Docker Swarm
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
     <a href="../swarm/" title="Docker Swarm" class="md-nav__link">
       Docker Swarm
     </a>
@@ -406,15 +420,15 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#if-we-wanted-to-run-it-just-with-docker" class="md-nav__link">
-    If we wanted to run it just with docker
+  <a href="#just-docker-run" class="md-nav__link">
+    Just docker run?
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#merely-docker-runs" class="md-nav__link">
-    Merely docker runs
+  <a href="#fixed-docker-runs" class="md-nav__link">
+    Fixed docker runs
   </a>
   
 </li>
@@ -439,7 +453,8 @@
                 
                 
                 <h1 id="local-environment">Local Environment<a class="headerlink" href="#local-environment" title="Permanent link">&para;</a></h1>
-<h3 id="if-we-wanted-to-run-it-just-with-docker">If we wanted to run it just with docker<a class="headerlink" href="#if-we-wanted-to-run-it-just-with-docker" title="Permanent link">&para;</a></h3>
+<p><img src="/img/single-engine.png" class="center" alt="About me" style="width:300px;"></p>
+<h2 id="just-docker-run">Just docker run?<a class="headerlink" href="#just-docker-run" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span>docker run -d --rm --name -p <span class="m">7777</span>:80 web_server nginx
 
 
@@ -450,8 +465,9 @@ open http://localhost:7777
 docker run -it --rm --name container1 alpine sh
 </pre></div>
 
+<details class="danger" open="open"><summary>Does not work</summary></details>
 <hr />
-<h3 id="merely-docker-runs">Merely docker runs<a class="headerlink" href="#merely-docker-runs" title="Permanent link">&para;</a></h3>
+<h2 id="fixed-docker-runs">Fixed docker runs<a class="headerlink" href="#fixed-docker-runs" title="Permanent link">&para;</a></h2>
 <div class="codehilite"><pre><span></span><span class="c1">#create a local network, so that containers can see each other</span>
 docker network create mynetwork
 

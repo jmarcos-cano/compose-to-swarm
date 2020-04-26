@@ -31,18 +31,18 @@
       
         <meta name="lang:search.tokenizer" content="[\s\-]+">
       
-      <link rel="shortcut icon" href="img/favicon.ico">
+      <link rel="shortcut icon" href="../img/favicon.ico">
       <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.4.3">
     
     
       
-        <title>Compose To Swarm</title>
+        <title>Intro Docker Swarm - Compose To Swarm</title>
       
     
     
-      <link rel="stylesheet" href="assets/stylesheets/application.30686662.css">
+      <link rel="stylesheet" href="../assets/stylesheets/application.30686662.css">
       
-        <link rel="stylesheet" href="assets/stylesheets/application-palette.a8b3c06d.css">
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
       
       
         
@@ -51,7 +51,7 @@
       
     
     
-      <script src="assets/javascripts/modernizr.74668098.js"></script>
+      <script src="../assets/javascripts/modernizr.74668098.js"></script>
     
     
       
@@ -60,12 +60,12 @@
         <style>body,input{font-family:"Space Mono","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Inconsolata","Courier New",Courier,monospace}</style>
       
     
-    <link rel="stylesheet" href="assets/fonts/material-icons.css">
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
     
     
       <link rel="stylesheet" href="https://unpkg.com/mermaid@7.1.2/dist/mermaid.css">
     
-      <link rel="stylesheet" href="css/extra.css">
+      <link rel="stylesheet" href="../css/extra.css">
     
     
       
@@ -89,7 +89,7 @@
     <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
     <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
     
-      <a href="#from-compose-to-swarm" tabindex="1" class="md-skip">
+      <a href="#intro-swarm-mode" tabindex="1" class="md-skip">
         Skip to content
       </a>
     
@@ -98,9 +98,9 @@
   <nav class="md-header-nav md-grid">
     <div class="md-flex">
       <div class="md-flex__cell md-flex__cell--shrink">
-        <a href="." title="Compose To Swarm" class="md-header-nav__button md-logo">
+        <a href=".." title="Compose To Swarm" class="md-header-nav__button md-logo">
           
-            <img src="img/dockergt.png" width="24" height="24">
+            <img src="../img/dockergt.png" width="24" height="24">
           
         </a>
       </div>
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Home
+                Intro Docker Swarm
               
             </span>
           
@@ -190,9 +190,9 @@
                   <div class="md-sidebar__inner">
                     <nav class="md-nav md-nav--primary" data-md-level="0">
   <label class="md-nav__title md-nav__title--site" for="__drawer">
-    <a href="." title="Compose To Swarm" class="md-nav__button md-logo">
+    <a href=".." title="Compose To Swarm" class="md-nav__button md-logo">
       
-        <img src="img/dockergt.png" width="48" height="48">
+        <img src="../img/dockergt.png" width="48" height="48">
       
     </a>
     Compose To Swarm
@@ -224,63 +224,11 @@
       
       
 
-  
 
-
-  <li class="md-nav__item md-nav__item--active">
-    
-    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-    
-      
-    
-    
-      <label class="md-nav__link md-nav__link--active" for="__toc">
-        Home
-      </label>
-    
-    <a href="." title="Home" class="md-nav__link md-nav__link--active">
+  <li class="md-nav__item">
+    <a href=".." title="Home" class="md-nav__link">
       Home
     </a>
-    
-      
-<nav class="md-nav md-nav--secondary">
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#meet-our-app" class="md-nav__link">
-    Meet our app
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    Architecture
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    Setup
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
-</nav>
-    
   </li>
 
     
@@ -309,7 +257,7 @@
 
 
   <li class="md-nav__item">
-    <a href="docker/" title="Simple Docker" class="md-nav__link">
+    <a href="../docker/" title="Simple Docker" class="md-nav__link">
       Simple Docker
     </a>
   </li>
@@ -321,7 +269,7 @@
 
 
   <li class="md-nav__item">
-    <a href="docker-compose/" title="Docker Compose" class="md-nav__link">
+    <a href="../docker-compose/" title="Docker Compose" class="md-nav__link">
       Docker Compose
     </a>
   </li>
@@ -333,7 +281,7 @@
 
 
   <li class="md-nav__item">
-    <a href="awesome-compose/" title="Awesome Compose" class="md-nav__link">
+    <a href="../awesome-compose/" title="Awesome Compose" class="md-nav__link">
       Awesome Compose
     </a>
   </li>
@@ -348,10 +296,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Multi Engine
@@ -367,11 +317,20 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="intro-swarm/" title="Intro Docker Swarm" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+    <a href="./" title="Intro Docker Swarm" class="md-nav__link md-nav__link--active">
       Intro Docker Swarm
     </a>
+    
   </li>
 
         
@@ -381,7 +340,7 @@
 
 
   <li class="md-nav__item">
-    <a href="swarm/" title="Docker Swarm" class="md-nav__link">
+    <a href="../swarm/" title="Docker Swarm" class="md-nav__link">
       Docker Swarm
     </a>
   </li>
@@ -393,7 +352,7 @@
 
 
   <li class="md-nav__item">
-    <a href="compose-k8.md" title="Compose in k8" class="md-nav__link">
+    <a href="../compose-k8.md" title="Compose in k8" class="md-nav__link">
       Compose in k8
     </a>
   </li>
@@ -421,36 +380,6 @@
     
   
   
-    <label class="md-nav__title" for="__toc">Table of contents</label>
-    <ul class="md-nav__list" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#meet-our-app" class="md-nav__link">
-    Meet our app
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#architecture" class="md-nav__link">
-    Architecture
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
-    Setup
-  </a>
-  
-</li>
-      
-      
-      
-      
-      
-    </ul>
-  
 </nav>
                   </div>
                 </div>
@@ -461,25 +390,66 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/jmarcos-cano/compose-to-swarm/edit/master/docs/index.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/jmarcos-cano/compose-to-swarm/edit/master/docs/intro-swarm.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
-                <h1 id="from-compose-to-swarm">From Compose to Swarm<a class="headerlink" href="#from-compose-to-swarm" title="Permanent link">&para;</a></h1>
-<!-- ![1](img/portada.png) -->
+                <h1 id="intro-swarm-mode">Intro <a href="https://docs.docker.com/engine/swarm/">Swarm Mode</a><a class="headerlink" href="#intro-swarm-mode" title="Permanent link">&para;</a></h1>
+<p>This section will give you the necessary to go full to production with Docker swarm mode.</p>
+<p><img src="/img/swarm.png" class="center" alt="About me" style="width:300px;"></p>
+<details>
+  <summary>Swarm vs K8</summary>
 
-<hr />
-<h2 id="meet-our-app">Meet our app<a class="headerlink" href="#meet-our-app" title="Permanent link">&para;</a></h2>
-<p><img alt="2" src="img/ourapp.png" /></p>
-<h2 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h2>
-<blockquote>
-<p>Nada fancy</p>
-</blockquote>
-<p><img alt="3" src="img/architecture.png" /></p>
-<hr />
-<h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h2>
+<h3>Docker swarm es mejor que kubernetes .... <br> pero ustedes no estan listos para esta conversacion </h3>
+<img src="/img/swarmvsk8.png" class="center" alt="About me" style="width:400px;">
+
+- Just Kidding
+
+</details>
+
+<details>
+  <summary>Features</summary>
+
+<ul>
+<li> Cluster management integrated with Docker Engine</li>
+
+
+<li> Declarative service model </li>
+
+<li> Scaling </li>
+
+<li> Desired state reconciliation (The swarm manager node constantly monitors the desired state )</li>
+
+<li> Multi-host networking </li>
+
+<li> Service discovery </li>
+
+<li> Load balancing</li>
+
+<li> Secure by default (intra node) </li>
+
+<li> Rolling updates </li>
+
+<li> Hyper EASY </li>
+
+</ul>
+</details>
+
+<h1 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h1>
 <div class="superfences-tabs">
 <input name="__tabs_1" type="radio" id="__tab_1_0" checked="checked" />
-<label for="__tab_1_0">PlaywithDocker</label>
+<label for="__tab_1_0">Local</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># check swarm is enabled</span>
+docker info <span class="p">|</span>grep -i swarm
+
+
+docker swarm init <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&quot;Already in Swarm Mode&quot;</span>
+
+
+docker node ls
+</pre></div></div>
+<input name="__tabs_1" type="radio" id="__tab_1_1" />
+<label for="__tab_1_1">PlaywithDocker</label>
 <div class="superfences-content"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="m">1</span>. Go to http://play-with-docker.com sign in with your user:pass <span class="o">(</span>create account <span class="k">if</span> needed<span class="o">)</span>.
 <span class="m">2</span>. Click on the wrench and <span class="k">select</span> either <span class="s2">&quot;3 Managers and 2 Workers&quot;</span> or <span class="s2">&quot;5 managers and no workers&quot;</span>
@@ -491,17 +461,36 @@
 git clone https://github.com/jmarcos-cano/compose-to-swarm.git
 <span class="nb">cd</span> compose-to-swarm
 </pre></div></div>
-<input name="__tabs_1" type="radio" id="__tab_1_1" />
-<label for="__tab_1_1">SwarmCloud</label>
-<div class="superfences-content"><div class="codehilite"><pre><span></span>We will use DigitalOcean to spin up a simple swarm cluster.
+<input name="__tabs_1" type="radio" id="__tab_1_2" />
+<label for="__tab_1_2">DigitalOcean</label>
+<div class="superfences-content"><div class="codehilite"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1"># Create 3 droplets with private networking enabled.</span>
+<span class="c1"># WHY 3?</span>
+
+<span class="c1"># install docker</span>
+<span class="nb">export</span> <span class="nv">leader</span><span class="o">=</span><span class="m">165</span>.227.74.229
+<span class="nb">export</span> <span class="nv">manager1</span><span class="o">=</span><span class="m">165</span>.227.77.199
+<span class="nb">export</span> <span class="nv">manager2</span><span class="o">=</span><span class="m">165</span>.227.65.241
+
+ssh root@<span class="si">${</span><span class="nv">leader</span><span class="si">}</span> <span class="s2">&quot;docker version || curl -fsSL https://get.docker.com/ | sh &quot;</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+ssh root@<span class="si">${</span><span class="nv">manager1</span><span class="si">}</span> <span class="s2">&quot;docker version || curl -fsSL https://get.docker.com/ | sh&quot;</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
+ssh root@<span class="si">${</span><span class="nv">manager2</span><span class="si">}</span> <span class="s2">&quot;docker version || curl -fsSL https://get.docker.com/ | sh&quot;</span>
+
+
+<span class="c1"># init swarm in 1 manager</span>
+<span class="c1">#ssh root@${leader} &quot;docker swarm init --advertise-addr eth1&quot;</span>
+
+<span class="c1"># get the manager join-token</span>
+<span class="c1">#ssh root@${leader} &quot;docker swarm join-token manager&quot;</span>
+
+
+<span class="c1"># Join the other managers</span>
+
+
+<span class="c1">## PLUS!</span>
+docker -H ssh://root@<span class="si">${</span><span class="nv">leader</span><span class="si">}</span> node ls
 </pre></div></div>
 </div>
-<!-- 
-```AKS tab=
-
-We will use Azuer Kubernetes Service to spin up a simple Kubernetes cluster.
-
-``` -->
                 
                   
                 
@@ -522,14 +511,28 @@ We will use Azuer Kubernetes Service to spin up a simple Kubernetes cluster.
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid">
         
+          <a href="../awesome-compose/" title="Awesome Compose" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Awesome Compose
+              </span>
+            </div>
+          </a>
         
-          <a href="docker/" title="Simple Docker" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+        
+          <a href="../swarm/" title="Docker Swarm" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
               <span class="md-flex__ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Simple Docker
+                Docker Swarm
               </span>
             </div>
             <div class="md-flex__cell md-flex__cell--shrink">
@@ -557,9 +560,9 @@ We will use Azuer Kubernetes Service to spin up a simple Kubernetes cluster.
       
     </div>
     
-      <script src="assets/javascripts/application.ac79c3b0.js"></script>
+      <script src="../assets/javascripts/application.ac79c3b0.js"></script>
       
-      <script>app.initialize({version:"1.0.4",url:{base:"."}})</script>
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
       
         <script src="https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js"></script>
       
