@@ -73,7 +73,7 @@ docker service ls
 # inspect the stack file and try to understand it
 cat docker-compose.simple.yml
 # deploy it
-docker stack deploy -c docker-compose.simple.yml --resolve-image=always --with-registry-auth intro
+docker stack deploy -c docker-compose.simple.yml --resolve-image=always --with-registry-auth compose_swarm
 
 # list current services
 docker service ls
@@ -82,31 +82,48 @@ docker service ls
 ```
 <br>
 
-> ⚠️ Go to your app (click in your upper link port 500) and see how the app looks like. !
+??? info "⚠️"
+    Go to your app (click in your upper link port 500) and see how the app looks like. !
+    Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
-> Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+
 
 Show current status
 ```bash
-docker service ps docker_intro_web
+docker stack ps compose_swarm
 ```
 
 ---
 ## 4. Environment Variables injection
 > 💡 This will give you a small intro to how you can manage configuration per environment (dev,qa,stage,production)
+
+
 ```bash
 # inspect the stack file and try to find the directive "FOO=${FOO:-BAR}"
 cat docker-compose.simple.yml
 
 # inject the new value
-export FOO="Hola Edmundo"
+export FOO="Development"
 
 # deploy it and see it update automatically
-docker stack deploy -c docker-compose.simple.yml --resolve-image=always docker_intro
+docker stack deploy -c docker-compose.simple.yml --resolve-image=always compose_swarm
+
 ```
+
+```bash
+# PROD
+cp .configs/production.env .env
+
+source .env
+docker stack deploy -c docker-compose.simple.yml --resolve-image=always compose_swarm
+
+```
+
+
 <br>
 
-> 🥇 Dare you to put your own Text there, see how sometimes the application becomes unaccessible?
+??? info "🥇"
+    Dare you to put your own Text there, see how sometimes the application becomes unaccessible?
 
 ---
 ## 5. Scale web app
@@ -118,7 +135,7 @@ Want High Availability?
 Swarm got you covered
 
 ```bash
-docker service scale docker_intro_web=4
+docker service scale compose_swarm_web=4
 ```
 <br>
 
@@ -135,12 +152,12 @@ Instead of scaling your service everytime, why don't we declare it?
 cat docker-compose.replicas.yml
 
 # Deploy new update for the stack
-docker stack deploy -c docker-compose.replicas.yml --resolve-image=always docker_intro
+docker stack deploy -c docker-compose.replicas.yml --resolve-image=always compose_swarm
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 <br>
 
-> 🥇 I dare you to set more than 3 replicas for docker_intro_web, how?
+> 🥇 I dare you to set more than 3 replicas for compose_swarm_web, how?
 
 ---
 ## 7. Rolling Updates
@@ -154,7 +171,7 @@ Rolling updates let you update your app with zero-downtime.
 less docker-compose.rolling.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.rolling.yml --resolve-image=always docker_intro
+docker stack deploy -c docker-compose.rolling.yml --resolve-image=always compose_swarm
 
 ```
 > press 'q' to exit from 'less'
@@ -164,7 +181,7 @@ Do this how many times you need in order to see it working.
 
 ```bash
 # graceful full restart of your app
-docker service update --force docker_intro_web
+docker service update --force compose_swarm_web
 ```
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
@@ -179,7 +196,7 @@ One can prevent memory starvation or CPU consumption of your app by adding "reso
 less docker-compose.resources.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.resources.yml --resolve-image=always docker_intro
+docker stack deploy -c docker-compose.resources.yml --resolve-image=always compose_swarm
 
 ```
 
@@ -195,13 +212,13 @@ docker ps
 less docker-compose.health.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.health.yml --resolve-image=always docker_intro
+docker stack deploy -c docker-compose.health.yml --resolve-image=always compose_swarm
 
 # after a few seconds run
 docker ps
 ```
 
-Do a: `docker service ps docker_intro_web`, Identify the placement of a container (identify on which node is running).
+Do a: `docker service ps compose_swarm_web`, Identify the placement of a container (identify on which node is running).
 
 Jump into that node and run `docker ps` find the container and its ID (first column), kill it and see how it self heals
 ```bash
@@ -217,12 +234,12 @@ docker kill <container ID>
 
 Can you explain why this times do not match up?
 ```bash
-docker stack deploy -c docker-compose.rolling.yml --resolve-image=always docker_intro
+docker stack deploy -c docker-compose.rolling.yml --resolve-image=always compose_swarm
 
-time docker service update --force docker_intro_web
+time docker service update --force compose_swarm_web
 
 
-docker stack deploy -c docker-compose.health.yml --resolve-image=always docker_intro
+docker stack deploy -c docker-compose.health.yml --resolve-image=always compose_swarm
 
-time docker service update --force docker_intro_web
+time docker service update --force compose_swarm_web
 ```
