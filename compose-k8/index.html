@@ -36,7 +36,7 @@
     
     
       
-        <title>Compose on Kubernetes - Compose To Swarm</title>
+        <title>Compose in k8 - Compose To Swarm</title>
       
     
     
@@ -115,7 +115,7 @@
             </span>
             <span class="md-header-nav__topic">
               
-                Compose on Kubernetes
+                Compose in k8
               
             </span>
           
@@ -296,10 +296,12 @@
       
       
 
+  
 
-  <li class="md-nav__item md-nav__item--nested">
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
     
     <label class="md-nav__link" for="nav-3">
       Multi Engine
@@ -339,11 +341,69 @@
           
           
 
+  
 
-  <li class="md-nav__item">
-    <a href="../compose-k8.md" title="Compose in k8" class="md-nav__link">
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Compose in k8
+      </label>
+    
+    <a href="./" title="Compose in k8" class="md-nav__link md-nav__link--active">
       Compose in k8
     </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#our-app" class="md-nav__link">
+    Our app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-examples" class="md-nav__link">
+    From examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#other-installations" class="md-nav__link">
+    Other installations
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
   </li>
 
         
@@ -373,9 +433,29 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#our-app" class="md-nav__link">
+    Our app
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#from-examples" class="md-nav__link">
+    From examples
+  </a>
+  
+    <nav class="md-nav">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
   <a href="#other-installations" class="md-nav__link">
     Other installations
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -395,18 +475,25 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/jmarcos-cano/compose-to-swarm/edit/master/docs/compose-k9.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                  <a href="https://github.com/jmarcos-cano/compose-to-swarm/edit/master/docs/compose-k8.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
                 
                 
                 <h1 id="compose-on-kubernetes">Compose on Kubernetes<a class="headerlink" href="#compose-on-kubernetes" title="Permanent link">&para;</a></h1>
 <p><a href="https://github.com/docker/compose-on-kubernetes">https://github.com/docker/compose-on-kubernetes</a></p>
 <div class="codehilite"><pre><span></span><span class="c1"># in docker desktop</span>
 kubectl api-versions <span class="p">|</span> grep compose
+</pre></div>
+
+<h2 id="our-app">Our app<a class="headerlink" href="#our-app" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>docker stack deploy --orchestrator<span class="o">=</span>kubernetes -c  docker-compose.simple.yml compose_swarm_k8
 
 
+kubectl get all -l <span class="s2">&quot;com.docker.stack.namespace=compose_swarm_k8&quot;</span>
+</pre></div>
 
-
-<span class="c1"># ---------</span>
+<hr />
+<h2 id="from-examples">From examples<a class="headerlink" href="#from-examples" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span><span class="c1"># ---------</span>
 <span class="nb">echo</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">version: &#39;3.3&#39;</span>
 
@@ -442,6 +529,13 @@ docker stack deploy --orchestrator<span class="o">=</span>kubernetes -c  compose
 <li>minikube</li>
 <li>microk8s</li>
 </ul>
+<h1 id="kompose"><a href="https://github.com/kubernetes/kompose">kompose</a><a class="headerlink" href="#kompose" title="Permanent link">&para;</a></h1>
+<ul>
+<li>only version 1,2 or 3</li>
+<li><a href="https://github.com/kubernetes/kompose/blob/master/docs/conversion.md">conversion matrix</a></li>
+</ul>
+<div class="codehilite"><pre><span></span>kompose convert -f compose/docker-compose.kompose.yml --stdout
+</pre></div>
                 
                   
                 
@@ -458,6 +552,27 @@ docker stack deploy --orchestrator<span class="o">=</span>kubernetes -c  compose
       
         
 <footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../swarm/" title="Docker Swarm" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Docker Swarm
+              </span>
+            </div>
+          </a>
+        
+        
+      </nav>
+    </div>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">

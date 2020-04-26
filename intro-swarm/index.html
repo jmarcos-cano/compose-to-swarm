@@ -352,7 +352,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../compose-k8.md" title="Compose in k8" class="md-nav__link">
+    <a href="../compose-k8/" title="Compose in k8" class="md-nav__link">
       Compose in k8
     </a>
   </li>
@@ -468,9 +468,9 @@ git clone https://github.com/jmarcos-cano/compose-to-swarm.git
 <span class="c1"># WHY 3?</span>
 
 <span class="c1"># install docker</span>
-<span class="nb">export</span> <span class="nv">leader</span><span class="o">=</span><span class="m">165</span>.227.74.229
-<span class="nb">export</span> <span class="nv">manager1</span><span class="o">=</span><span class="m">165</span>.227.77.199
-<span class="nb">export</span> <span class="nv">manager2</span><span class="o">=</span><span class="m">165</span>.227.65.241
+<span class="nb">export</span> <span class="nv">leader</span><span class="o">=</span>x.x.74.229
+<span class="nb">export</span> <span class="nv">manager1</span><span class="o">=</span>x.x.77.199
+<span class="nb">export</span> <span class="nv">manager2</span><span class="o">=</span>x.x.65.241
 
 ssh root@<span class="si">${</span><span class="nv">leader</span><span class="si">}</span> <span class="s2">&quot;docker version || curl -fsSL https://get.docker.com/ | sh &quot;</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>
 ssh root@<span class="si">${</span><span class="nv">manager1</span><span class="si">}</span> <span class="s2">&quot;docker version || curl -fsSL https://get.docker.com/ | sh&quot;</span> <span class="o">&amp;&amp;</span> <span class="se">\</span>

@@ -438,18 +438,12 @@
     9. Health Check and Self healing
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#extra" class="md-nav__link">
-    Extra
-  </a>
-  
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#full-production-lb" class="md-nav__link">
+    Full Production + LB
+  </a>
   
 </li>
       
@@ -470,7 +464,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../compose-k8.md" title="Compose in k8" class="md-nav__link">
+    <a href="../compose-k8/" title="Compose in k8" class="md-nav__link">
       Compose in k8
     </a>
   </li>
@@ -582,18 +576,12 @@
     9. Health Check and Self healing
   </a>
   
-    <nav class="md-nav">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#extra" class="md-nav__link">
-    Extra
-  </a>
-  
 </li>
-        
-      </ul>
-    </nav>
+      
+        <li class="md-nav__item">
+  <a href="#full-production-lb" class="md-nav__link">
+    Full Production + LB
+  </a>
   
 </li>
       
@@ -740,12 +728,11 @@ cat compose/docker-compose.replicas.yml
 less compose/docker-compose.rolling.yml
 
 
-<span class="nv">IMAGE_NAME</span><span class="o">=</span>mcano/compose-to-swarm:v2 docker-compose -f compose/docker-compose.rolling.yml 
 <span class="c1"># Deploy/update this new configuration for your stack</span>
-docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image<span class="o">=</span>always compose_swarm
+docker stack deploy -c &lt;<span class="o">(</span>docker-compose -f compose/docker-compose.rolling.yml config<span class="o">)</span> --resolve-image<span class="o">=</span>always compose_swarm
 
 <span class="c1"># update image</span>
-<span class="nv">IMAGE_NAME</span><span class="o">=</span>mcano/compose-to-swarm:v2 <span class="nv">DEPLOYMENT_REPLICAS</span><span class="o">=</span><span class="m">7</span>  docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image<span class="o">=</span>always compose_swarm
+docker stack deploy -c &lt;<span class="o">(</span><span class="nv">IMAGE_NAME</span><span class="o">=</span>mcano/compose-to-swarm:v2 docker-compose -f compose/docker-compose.rolling.yml config<span class="o">)</span> --resolve-image<span class="o">=</span>always compose_swarm
 </pre></div>
 
 <h4 id="lets-force-update-to-see-the-rolling-updates">Lets force update to see the rolling updates<a class="headerlink" href="#lets-force-update-to-see-the-rolling-updates" title="Permanent link">&para;</a></h4>
@@ -761,10 +748,10 @@ docker service update --force compose_swarm_web
 <h2 id="8-host-limit-resource">8. Host limit resource<a class="headerlink" href="#8-host-limit-resource" title="Permanent link">&para;</a></h2>
 <p>One can prevent memory starvation or CPU consumption of your app by adding "resources:" section</p>
 <div class="codehilite"><pre><span></span><span class="c1"># inspect .resources file and find the &quot;resources:&quot; section, try to understand it</span>
-less docker-compose.resources.yml
+less compose/docker-compose.resources.yml
 
 <span class="c1"># Deploy/update this new configuration for your stack</span>
-docker stack deploy -c docker-compose.resources.yml --resolve-image<span class="o">=</span>always compose_swarm
+docker stack deploy -c compose/docker-compose.resources.yml --resolve-image<span class="o">=</span>always compose_swarm
 </pre></div>
 
 <h2 id="9-health-check-and-self-healing">9. Health Check and Self healing<a class="headerlink" href="#9-health-check-and-self-healing" title="Permanent link">&para;</a></h2>
@@ -773,10 +760,10 @@ docker stack deploy -c docker-compose.resources.yml --resolve-image<span class="
 docker ps
 
 <span class="c1"># inspect .health file and find the &quot;healthcheck:&quot; section, try to understand it</span>
-less docker-compose.health.yml
+less compose/docker-compose.health.yml
 
 <span class="c1"># Deploy/update this new configuration for your stack</span>
-docker stack deploy -c docker-compose.health.yml --resolve-image<span class="o">=</span>always compose_swarm
+docker stack deploy -c compose/docker-compose.health.yml --resolve-image<span class="o">=</span>always compose_swarm
 
 <span class="c1"># after a few seconds run</span>
 docker ps
@@ -786,21 +773,13 @@ docker ps
 <p>Jump into that node and run <code class="codehilite">docker ps</code> find the container and its ID (first column), kill it and see how it self heals
 <div class="codehilite"><pre><span></span>docker <span class="nb">kill</span> &lt;container ID&gt;
 </pre></div></p>
-<blockquote>
-<p>Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.</p>
-<p>🥇 I dare you to do a rolling update with healthcheck included and see what happens, can you predict what will happen ahead of 'time'?</p>
-</blockquote>
-<h3 id="extra">Extra<a class="headerlink" href="#extra" title="Permanent link">&para;</a></h3>
-<p>Can you explain why this times do not match up?
-<div class="codehilite"><pre><span></span>docker stack deploy -c docker-compose.rolling.yml --resolve-image<span class="o">=</span>always compose_swarm
+<details class="info"><summary>info</summary><p>Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.</p>
+</details>
+<h2 id="full-production-lb">Full Production + <a href="http://138-197-49-123.nip.io/">LB</a><a class="headerlink" href="#full-production-lb" title="Permanent link">&para;</a></h2>
+<div class="codehilite"><pre><span></span>docker stack deploy -c &lt;(docker-compose --env-file .configs/production.env -f docker-compose.yml config ) --resolve-image=always --with-registry-auth compose_swarm_prod
 
-<span class="nb">time</span> docker service update --force compose_swarm_web
-
-
-docker stack deploy -c docker-compose.health.yml --resolve-image<span class="o">=</span>always compose_swarm
-
-<span class="nb">time</span> docker service update --force compose_swarm_web
-</pre></div></p>
+open http://138-197-49-123.nip.io/
+</pre></div>
                 
                   
                 
@@ -835,6 +814,20 @@ docker stack deploy -c docker-compose.health.yml --resolve-image<span class="o">
             </div>
           </a>
         
+        
+          <a href="../compose-k8/" title="Compose in k8" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Compose in k8
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
         
       </nav>
     </div>
