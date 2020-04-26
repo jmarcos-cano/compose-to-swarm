@@ -234,7 +234,7 @@ docker kill <container ID>
 
 
 
-## Full Production + [LB](http://138-197-49-123.nip.io/)
+## Full Production + [LB](http://138-197-49-123.nip.io/make)
 ```
 docker stack deploy -c <(docker-compose --env-file .configs/production.env -f docker-compose.yml config ) --resolve-image=always --with-registry-auth compose_swarm_prod
 
