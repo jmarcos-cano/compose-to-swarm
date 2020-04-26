@@ -477,6 +477,11 @@ ssh root@<span class="si">${</span><span class="nv">manager1</span><span class="
 ssh root@<span class="si">${</span><span class="nv">manager2</span><span class="si">}</span> <span class="s2">&quot;docker version || curl -fsSL https://get.docker.com/ | sh&quot;</span>
 
 
+ssh root@<span class="si">${</span><span class="nv">leader</span><span class="si">}</span> <span class="s2">&quot;sudo curl -L &quot;</span>https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64<span class="s2">&quot; -o /usr/bin/docker-compose &amp;&amp;  chmod +x /usr/bin/docker-compose&quot;</span> <span class="o">&amp;&amp;</span><span class="se">\</span>
+ssh root@<span class="si">${</span><span class="nv">manager1</span><span class="si">}</span> <span class="s2">&quot;sudo curl -L &quot;</span>https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64<span class="s2">&quot; -o /usr/bin/docker-compose &amp;&amp;  chmod +x /usr/bin/docker-compose&quot;</span> <span class="o">&amp;&amp;</span><span class="se">\</span>
+ssh root@<span class="si">${</span><span class="nv">manager2</span><span class="si">}</span> <span class="s2">&quot;sudo curl -L &quot;</span>https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64<span class="s2">&quot; -o /usr/bin/docker-compose &amp;&amp;  chmod +x /usr/bin/docker-compose&quot;</span>
+
+
 <span class="c1"># init swarm in 1 manager</span>
 <span class="c1">#ssh root@${leader} &quot;docker swarm init --advertise-addr eth1&quot;</span>
 

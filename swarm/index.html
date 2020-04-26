@@ -691,14 +691,13 @@ cat docker-compose.simple.yml
 <span class="nb">export</span> <span class="nv">FOO</span><span class="o">=</span><span class="s2">&quot;Development&quot;</span>
 
 <span class="c1"># deploy it and see it update automatically</span>
-docker stack deploy -c docker-compose.simple.yml --resolve-image<span class="o">=</span>always compose_swarm
+docker stack deploy -c docker-compose.simple.yml --resolve-image<span class="o">=</span>always --with-registry-auth compose_swarm
+
+docker stack services compose_swarm
 </pre></div>
 
 <div class="codehilite"><pre><span></span><span class="c1"># PROD</span>
-cp .configs/production.env .env
-
-<span class="nb">source</span> .env
-docker stack deploy -c docker-compose.simple.yml --resolve-image<span class="o">=</span>always compose_swarm
+docker stack deploy -c &lt;<span class="o">(</span>docker-compose --env-file .configs/production.env -f docker-compose.simple.yml config <span class="o">)</span> --resolve-image<span class="o">=</span>always --with-registry-auth compose_swarm_prod
 </pre></div>
 
 <p><br></p>
@@ -706,32 +705,30 @@ docker stack deploy -c docker-compose.simple.yml --resolve-image<span class="o">
 </details>
 <hr />
 <h2 id="5-scale-web-app">5. Scale web app<a class="headerlink" href="#5-scale-web-app" title="Permanent link">&para;</a></h2>
-<p>Want to handle more traffic?
-Want to be more resilient?
-Want High Availability?</p>
+<ul>
+<li>Want to handle more traffic?</li>
+<li>Want to be more resilient?</li>
+<li>Want High Availability?</li>
+</ul>
 <p>Swarm got you covered</p>
 <p><div class="codehilite"><pre><span></span>docker service scale <span class="nv">compose_swarm_web</span><span class="o">=</span><span class="m">4</span>
 </pre></div>
 <br></p>
-<blockquote>
-<p>⚠️ Go to your app (click in your upper link port 500) and see how which task/container responds</p>
-<p>Go to your visualizer (click in your upper link port 8080) and see how the services are spread.</p>
-</blockquote>
+<details class="info"><summary>⚠️</summary><p>Go to your app (click in your upper link port 500) and see how which task/container responds
+Go to your visualizer (click in your upper link port 8080) and see how the services are spread.</p>
+</details>
 <hr />
 <h2 id="6-declarative-deployment-replicas">6. Declarative Deployment Replicas<a class="headerlink" href="#6-declarative-deployment-replicas" title="Permanent link">&para;</a></h2>
 <p>Instead of scaling your service everytime, why don't we declare it?</p>
 <div class="codehilite"><pre><span></span><span class="c1"># Inspect the .replicas file and find &quot;deploy: &quot; section</span>
-cat docker-compose.replicas.yml
+cat compose/docker-compose.replicas.yml
 
 <span class="c1"># Deploy new update for the stack</span>
-docker stack deploy -c docker-compose.replicas.yml --resolve-image<span class="o">=</span>always compose_swarm
+<span class="nv">DEPLOYMENT_REPLICAS</span><span class="o">=</span><span class="m">7</span> docker stack deploy -c compose/docker-compose.replicas.yml --resolve-image<span class="o">=</span>always compose_swarm
 </pre></div>
 
-<blockquote>
-<p>Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
-<br></p>
-<p>🥇 I dare you to set more than 3 replicas for compose_swarm_web, how?</p>
-</blockquote>
+<details class="info"><summary>⚠️</summary><p>Go to your visualizer (click in your upper link port 8080) and see how the services are spread.</p>
+</details>
 <hr />
 <h2 id="7-rolling-updates">7. Rolling Updates<a class="headerlink" href="#7-rolling-updates" title="Permanent link">&para;</a></h2>
 <p>Rolling updates let you update your app with zero-downtime.
@@ -740,15 +737,17 @@ docker stack deploy -c docker-compose.replicas.yml --resolve-image<span class="o
 <p>💡 v1 has been running for 2 weeks now and you are ready to ship your new and hottest feature on v2, with rolling updates you can easily ship v2 let it coexist with v1 until v1 gets fully drain (removed) and v2 gets out.</p>
 </blockquote>
 <div class="codehilite"><pre><span></span><span class="c1"># inspect .rolling file and find the &quot;update_config:&quot; section, try to understand it</span>
-less docker-compose.rolling.yml
+less compose/docker-compose.rolling.yml
 
+
+<span class="nv">IMAGE_NAME</span><span class="o">=</span>mcano/compose-to-swarm:v2 docker-compose -f compose/docker-compose.rolling.yml 
 <span class="c1"># Deploy/update this new configuration for your stack</span>
-docker stack deploy -c docker-compose.rolling.yml --resolve-image<span class="o">=</span>always compose_swarm
+docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image<span class="o">=</span>always compose_swarm
+
+<span class="c1"># update image</span>
+<span class="nv">IMAGE_NAME</span><span class="o">=</span>mcano/compose-to-swarm:v2 <span class="nv">DEPLOYMENT_REPLICAS</span><span class="o">=</span><span class="m">7</span>  docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image<span class="o">=</span>always compose_swarm
 </pre></div>
 
-<blockquote>
-<p>press 'q' to exit from 'less'</p>
-</blockquote>
 <h4 id="lets-force-update-to-see-the-rolling-updates">Lets force update to see the rolling updates<a class="headerlink" href="#lets-force-update-to-see-the-rolling-updates" title="Permanent link">&para;</a></h4>
 <p>Do this how many times you need in order to see it working.</p>
 <div class="codehilite"><pre><span></span><span class="c1"># graceful full restart of your app</span>
