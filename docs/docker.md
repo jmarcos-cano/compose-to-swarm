@@ -1,6 +1,8 @@
 # Local Environment
 
-### If we wanted to run it just with docker
+<img src="/img/single-engine.png" class="center" alt="About me" style="width:300px;">
+
+## Just docker run?
 
 
 ```bash
@@ -15,10 +17,12 @@ docker run -it --rm --name container1 alpine sh
 
 ```
 
+???+ danger "Does not work"
+
 
 ---
 
-### Merely docker runs
+## Fixed docker runs
 ```bash
 #create a local network, so that containers can see each other
 docker network create mynetwork

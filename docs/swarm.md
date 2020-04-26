@@ -1,8 +1,16 @@
+# Swarm Steps
 
-# Swarm Mode lab
-This section will give you the necessary to go full to production with Docker swarm mode.
+## 0. git clone
+
+```bash
+
+git clone https://github.com/jmarcos-cano/compose-to-swarm.git
+cd compose-to-swarm
+
+```
 
 ## 1. Enable Visualizer on port 8080
+
 ```bash
 docker service create \
   --name=viz \
@@ -13,10 +21,15 @@ docker service create \
 
 # wait until it says "service converged"
 ```
->  go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+
+??? info "⚠️"
+    go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 ---
+
 ## 2. Simple service create
+
+
 ```bash
 # Create a swarm service from a Nginx docker image
 docker service create --name nginx-ws -p 80:80 nginx
@@ -24,9 +37,13 @@ docker service create --name nginx-ws -p 80:80 nginx
 # List the current services
 docker service ls
 ```
-> ⚠️ Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
-> ⚠️  Click also on Port 80 (Nginx) - it should say "Welcome to Nginx"
+
+??? info "⚠️"
+    Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+    Click also on Port 80 (Nginx) - it should say "Welcome to Nginx"
+
+
 
 **Scale the service**
 ```bash

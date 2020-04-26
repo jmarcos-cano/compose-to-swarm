@@ -5,7 +5,7 @@ networks:
 
 services:
   web:
-    image: ${IMAGE_NAME:-mcano/docker:intro}
+    image: ${IMAGE_NAME:-mcano/compose-to-swarm:v1}
     build:
         context: .
     environment:

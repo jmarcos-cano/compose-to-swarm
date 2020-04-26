@@ -3,6 +3,4 @@ services:
   web:
     build:
       context: .
-    image: ${IMAGE_NAME:-mcano/docker:intro}
-    volumes:
-        - ./:/code
+    image: ${IMAGE_NAME:-mcano/compose-to-swarm:v1}

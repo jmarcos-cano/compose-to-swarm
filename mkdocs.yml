@@ -14,6 +14,7 @@ nav:
       - "Docker Compose": "docker-compose.md"
       - "Awesome Compose": "awesome-compose.md"
   - Multi Engine:
+      - "Intro Docker Swarm": "intro-swarm.md"
       - "Docker Swarm": "swarm.md"
       - "Compose in k8": "compose-k8.md"
 
@@ -74,5 +75,6 @@ markdown_extensions:
 
 extra_css:
   - https://unpkg.com/mermaid@7.1.2/dist/mermaid.css
+  - css/extra.css
 extra_javascript:
   - https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js

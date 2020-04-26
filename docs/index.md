@@ -12,6 +12,12 @@
 ![2](img/ourapp.png)
 
 
+## Architecture
+
+> Nada fancy
+
+![3](img/architecture.png)
+
 
 ---
 ## Setup
