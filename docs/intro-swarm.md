@@ -81,9 +81,9 @@ cd compose-to-swarm
 # WHY 3?
 
 # install docker
-export leader=165.227.74.229
-export manager1=165.227.77.199
-export manager2=165.227.65.241
+export leader=x.x.74.229
+export manager1=x.x.77.199
+export manager2=x.x.65.241
 
 ssh root@${leader} "docker version || curl -fsSL https://get.docker.com/ | sh " && \
 ssh root@${manager1} "docker version || curl -fsSL https://get.docker.com/ | sh" && \
