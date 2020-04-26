@@ -533,8 +533,11 @@ docker-compose -f docker-compose.yml  -f compose/docker-compose-hotreload.yml up
 </pre></div>
 
 <h2 id="workflow">Workflow<a class="headerlink" href="#workflow" title="Permanent link">&para;</a></h2>
-<div class="mermaid">graph LR
-    A -- text --&gt; B -- text2 --&gt; C</div>
+<div class="mermaid">graph TD;
+    id1&gt;Common Dev Workflow with compose];
+    %% comment
+    docker-compose.yml+app -- docker-compose build --&gt;DockerImage;
+    DockerImage -- docker-compose push --&gt;DockerHub;</div>
 
 <h3 id="template-docker-composeyml-file">Template docker-compose.yml file<a class="headerlink" href="#template-docker-composeyml-file" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span>docker-compose config

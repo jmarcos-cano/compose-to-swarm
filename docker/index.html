@@ -284,6 +284,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#if-we-wanted-to-run-it-just-with-docker" class="md-nav__link">
+    If we wanted to run it just with docker
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#merely-docker-runs" class="md-nav__link">
     Merely docker runs
   </a>
@@ -399,6 +406,13 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#if-we-wanted-to-run-it-just-with-docker" class="md-nav__link">
+    If we wanted to run it just with docker
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#merely-docker-runs" class="md-nav__link">
     Merely docker runs
   </a>
@@ -425,6 +439,18 @@
                 
                 
                 <h1 id="local-environment">Local Environment<a class="headerlink" href="#local-environment" title="Permanent link">&para;</a></h1>
+<h3 id="if-we-wanted-to-run-it-just-with-docker">If we wanted to run it just with docker<a class="headerlink" href="#if-we-wanted-to-run-it-just-with-docker" title="Permanent link">&para;</a></h3>
+<div class="codehilite"><pre><span></span>docker run -d --rm --name -p <span class="m">7777</span>:80 web_server nginx
+
+
+open http://localhost:7777
+
+
+
+docker run -it --rm --name container1 alpine sh
+</pre></div>
+
+<hr />
 <h3 id="merely-docker-runs">Merely docker runs<a class="headerlink" href="#merely-docker-runs" title="Permanent link">&para;</a></h3>
 <div class="codehilite"><pre><span></span><span class="c1">#create a local network, so that containers can see each other</span>
 docker network create mynetwork
