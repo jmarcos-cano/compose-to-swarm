@@ -10,9 +10,25 @@ https://github.com/docker/compose-on-kubernetes
 # in docker desktop
 kubectl api-versions | grep compose
 
+```
+
+## Our app
+
+```bash
+docker stack deploy --orchestrator=kubernetes -c  docker-compose.simple.yml compose_swarm_k8
+
+
+kubectl get all -l "com.docker.stack.namespace=compose_swarm_k8"
+
+```
 
 
 
+---
+## From examples
+
+
+```bash
 # ---------
 echo """
 version: '3.3'
@@ -51,3 +67,13 @@ docker stack deploy --orchestrator=kubernetes -c  compose/compose-k8.yaml hellok
 - kind
 - minikube
 - microk8s
+
+
+# [kompose](https://github.com/kubernetes/kompose)
+
+- only version 1,2 or 3
+- [conversion matrix](https://github.com/kubernetes/kompose/blob/master/docs/conversion.md)
+
+```bash
+kompose convert -f compose/docker-compose.kompose.yml --stdout
+```

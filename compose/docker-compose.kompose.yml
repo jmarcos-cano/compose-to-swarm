@@ -1,4 +1,4 @@
-version: "3.5"
+version: "3"
 services:
   web:
     image: ${IMAGE_NAME:-mcano/compose-to-swarm:v1}
@@ -6,10 +6,7 @@ services:
       - REDIS_HOST=redis
       - FOO=${FOO:-BAR}
     ports:
-      - target: 5000
-        published: ${HTTP_PORT:-5000}
-        protocol: tcp
-        mode: host
+    - 5000:5000
     networks:
       - skynet
 

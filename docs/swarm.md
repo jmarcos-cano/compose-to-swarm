@@ -169,37 +169,38 @@ Rolling updates let you update your app with zero-downtime.
 less compose/docker-compose.rolling.yml
 
 
-IMAGE_NAME=mcano/compose-to-swarm:v2 docker-compose -f compose/docker-compose.rolling.yml 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image=always compose_swarm
+docker stack deploy -c <(docker-compose -f compose/docker-compose.rolling.yml config) --resolve-image=always compose_swarm
 
 # update image
-IMAGE_NAME=mcano/compose-to-swarm:v2 DEPLOYMENT_REPLICAS=7  docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image=always compose_swarm
-
+docker stack deploy -c <(IMAGE_NAME=mcano/compose-to-swarm:v2 docker-compose -f compose/docker-compose.rolling.yml config) --resolve-image=always compose_swarm
 ```
 
 
 #### Lets force update to see the rolling updates
+
 Do this how many times you need in order to see it working.
 
 ```bash
 # graceful full restart of your app
 docker service update --force compose_swarm_web
 ```
+
 > Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 
 
 ---
 ## 8. Host limit resource
+
 One can prevent memory starvation or CPU consumption of your app by adding "resources:" section
 
 ```bash
 # inspect .resources file and find the "resources:" section, try to understand it
-less docker-compose.resources.yml
+less compose/docker-compose.resources.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.resources.yml --resolve-image=always compose_swarm
+docker stack deploy -c compose/docker-compose.resources.yml --resolve-image=always compose_swarm
 
 ```
 
@@ -212,10 +213,10 @@ Auto restarts and health-check can also be possible by adding "healthcheck: "
 docker ps
 
 # inspect .health file and find the "healthcheck:" section, try to understand it
-less docker-compose.health.yml
+less compose/docker-compose.health.yml
 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.health.yml --resolve-image=always compose_swarm
+docker stack deploy -c compose/docker-compose.health.yml --resolve-image=always compose_swarm
 
 # after a few seconds run
 docker ps
@@ -228,21 +229,15 @@ Jump into that node and run `docker ps` find the container and its ID (first col
 docker kill <container ID>
 ```
 
-> Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.
-
-> 🥇 I dare you to do a rolling update with healthcheck included and see what happens, can you predict what will happen ahead of 'time'?
-
-
-### Extra
-
-Can you explain why this times do not match up?
-```bash
-docker stack deploy -c docker-compose.rolling.yml --resolve-image=always compose_swarm
-
-time docker service update --force compose_swarm_web
+??? info "info"
+    Go to your visualizer (click in your upper link port 8080) and see how the services are spread and self healed.
 
 
-docker stack deploy -c docker-compose.health.yml --resolve-image=always compose_swarm
 
-time docker service update --force compose_swarm_web
+## Full Production + [LB](http://138-197-49-123.nip.io/)
+```
+docker stack deploy -c <(docker-compose --env-file .configs/production.env -f docker-compose.yml config ) --resolve-image=always --with-registry-auth compose_swarm_prod
+
+open http://138-197-49-123.nip.io/
+
 ```
