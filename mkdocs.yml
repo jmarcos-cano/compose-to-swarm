@@ -1,0 +1,80 @@
+site_name: Compose To Swarm
+
+repo_url: https://github.com/jmarcos-cano/compose-to-swarm
+
+
+
+
+
+
+nav:
+  - Home: index.md
+  - Single Engine:
+      - "Simple Docker": "docker.md"
+      - "Docker Compose": "docker-compose.md"
+      - "Awesome Compose": "awesome-compose.md"
+  - Multi Engine:
+      - "Intro Docker Swarm": "intro-swarm.md"
+      - "Docker Swarm": "swarm.md"
+      - "Compose in k8": "compose-k8.md"
+
+
+
+
+theme:
+  name: material
+  palette:
+    primary: orange
+    accent: blue grey
+
+  logo: 'img/dockergt.png'
+  font:
+    text: 'Space Mono'
+    code: 'Inconsolata'
+  language: 'en'
+  favicon: 'img/favicon.ico'
+  include_sidebar: True
+  # feature:
+  #   tabs: true
+
+
+plugins:
+  - search
+  #- markdownextradata: {}
+markdown_extensions:
+  - codehilite
+  - footnotes
+  - admonition
+  - meta
+  - toc:
+        permalink: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.mark
+
+  - pymdownx.extra
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+  - pymdownx.inlinehilite
+  - pymdownx.magiclink
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.smartsymbols
+  - pymdownx.progressbar
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_div_format
+
+
+# use_directory_urls: true
+
+extra_css:
+  - https://unpkg.com/mermaid@7.1.2/dist/mermaid.css
+  - css/extra.css
+extra_javascript:
+  - https://unpkg.com/mermaid@7.1.2/dist/mermaid.min.js

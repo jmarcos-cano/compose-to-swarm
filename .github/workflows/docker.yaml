@@ -1,0 +1,13 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+‐ name: build-push
+  uses: docker/build-push-action@v1
+  with:
+    username: ${{ DOCKER_USERNAME }}
+    password: ${{ DOCKER_PASSWORD }}
+    registry: myregistry
+    repository: myorg/myrepo
+    tags: v1

@@ -1,0 +1,7 @@
+docs/*
+site/*
+kubernetes/*
+.git/*
+.github/*
+.travis.yml
+compose/*
