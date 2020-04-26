@@ -1,16 +1,13 @@
 version: "3.5"
 
-
 networks:
   skynet:
-
 
 services:
   web:
     image: ${IMAGE_NAME:-mcano/docker:intro}
-    build: .
-    volumes:
-        - ./:/code
+    build:
+        context: .
     environment:
       - REDIS_HOST=redis
       - DOCKER_SERVICE_NAME={{.Service.Name}}.{{.Task.Slot}}
@@ -22,7 +19,7 @@ services:
       - skynet
     # adds self-healing availability
     healthcheck:
-      test: wget -O- http://localhost:5000/healthz
+      test: wget -O- http://localhost:5000/health
       interval: 30s
       timeout: 10s
       retries: 3
@@ -47,6 +44,7 @@ services:
           cpus: '0.50'
           # up to 200 MB
           memory: 200M
+          # cgroups
         # at least reserve this resources
         reservations:
           cpus: '0.25'

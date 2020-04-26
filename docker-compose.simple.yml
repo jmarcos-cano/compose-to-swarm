@@ -4,7 +4,6 @@ services:
     image: ${IMAGE_NAME:-mcano/docker:intro}
     environment:
       - REDIS_HOST=redis
-      - DOCKER_SERVICE_NAME={{.Service.Name}}.{{.Task.Slot}}
       - FOO=${FOO:-BAR}
     ports:
       - target: 5000
