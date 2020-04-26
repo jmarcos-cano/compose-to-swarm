@@ -1,7 +1,22 @@
 # Local Environment
 
+### If we wanted to run it just with docker
 
 
+```bash
+docker run -d --rm --name -p 7777:80 web_server nginx
+
+
+open http://localhost:7777
+
+
+
+docker run -it --rm --name container1 alpine sh
+
+```
+
+
+---
 
 ### Merely docker runs
 ```bash
