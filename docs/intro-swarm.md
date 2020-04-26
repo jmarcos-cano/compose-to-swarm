@@ -90,6 +90,11 @@ ssh root@${manager1} "docker version || curl -fsSL https://get.docker.com/ | sh"
 ssh root@${manager2} "docker version || curl -fsSL https://get.docker.com/ | sh"
 
 
+ssh root@${leader} "sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64" -o /usr/bin/docker-compose &&  chmod +x /usr/bin/docker-compose" &&\
+ssh root@${manager1} "sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64" -o /usr/bin/docker-compose &&  chmod +x /usr/bin/docker-compose" &&\
+ssh root@${manager2} "sudo curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-Linux-x86_64" -o /usr/bin/docker-compose &&  chmod +x /usr/bin/docker-compose"
+
+
 # init swarm in 1 manager
 #ssh root@${leader} "docker swarm init --advertise-addr eth1"
 

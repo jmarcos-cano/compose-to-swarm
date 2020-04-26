@@ -106,16 +106,15 @@ cat docker-compose.simple.yml
 export FOO="Development"
 
 # deploy it and see it update automatically
-docker stack deploy -c docker-compose.simple.yml --resolve-image=always compose_swarm
+docker stack deploy -c docker-compose.simple.yml --resolve-image=always --with-registry-auth compose_swarm
+
+docker stack services compose_swarm
 
 ```
 
 ```bash
 # PROD
-cp .configs/production.env .env
-
-source .env
-docker stack deploy -c docker-compose.simple.yml --resolve-image=always compose_swarm
+docker stack deploy -c <(docker-compose --env-file .configs/production.env -f docker-compose.simple.yml config ) --resolve-image=always --with-registry-auth compose_swarm_prod
 
 ```
 
@@ -128,9 +127,9 @@ docker stack deploy -c docker-compose.simple.yml --resolve-image=always compose_
 ---
 ## 5. Scale web app
 
-Want to handle more traffic?
-Want to be more resilient?
-Want High Availability?
+- Want to handle more traffic?
+- Want to be more resilient?
+- Want High Availability?
 
 Swarm got you covered
 
@@ -139,9 +138,9 @@ docker service scale compose_swarm_web=4
 ```
 <br>
 
-> ⚠️ Go to your app (click in your upper link port 500) and see how which task/container responds
-
-> Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
+??? info "⚠️"
+    Go to your app (click in your upper link port 500) and see how which task/container responds
+    Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 ---
 ## 6. Declarative Deployment Replicas
@@ -149,15 +148,14 @@ Instead of scaling your service everytime, why don't we declare it?
 
 ```bash
 # Inspect the .replicas file and find "deploy: " section
-cat docker-compose.replicas.yml
+cat compose/docker-compose.replicas.yml
 
 # Deploy new update for the stack
-docker stack deploy -c docker-compose.replicas.yml --resolve-image=always compose_swarm
+DEPLOYMENT_REPLICAS=7 docker stack deploy -c compose/docker-compose.replicas.yml --resolve-image=always compose_swarm
 ```
-> Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
-<br>
 
-> 🥇 I dare you to set more than 3 replicas for compose_swarm_web, how?
+??? info "⚠️"
+    Go to your visualizer (click in your upper link port 8080) and see how the services are spread.
 
 ---
 ## 7. Rolling Updates
@@ -168,13 +166,18 @@ Rolling updates let you update your app with zero-downtime.
 
 ```bash
 # inspect .rolling file and find the "update_config:" section, try to understand it
-less docker-compose.rolling.yml
+less compose/docker-compose.rolling.yml
 
+
+IMAGE_NAME=mcano/compose-to-swarm:v2 docker-compose -f compose/docker-compose.rolling.yml 
 # Deploy/update this new configuration for your stack
-docker stack deploy -c docker-compose.rolling.yml --resolve-image=always compose_swarm
+docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image=always compose_swarm
+
+# update image
+IMAGE_NAME=mcano/compose-to-swarm:v2 DEPLOYMENT_REPLICAS=7  docker stack deploy -c compose/docker-compose.rolling.yml --resolve-image=always compose_swarm
 
 ```
-> press 'q' to exit from 'less'
+
 
 #### Lets force update to see the rolling updates
 Do this how many times you need in order to see it working.
