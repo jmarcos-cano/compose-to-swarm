@@ -35,11 +35,11 @@ docker-compose config
 ### Build
 ```bash
 # build and up
-docker-compose -f docker-compose.yml -f docker-compose-build.yml up --build
+docker-compose -f docker-compose.yml up --build
 # only build
-docker-compose -f docker-compose.yml -f docker-compose-build.yml build
+docker-compose -f docker-compose.yml build
 # push it
-docker-compose -f docker-compose.yml -f docker-compose-build.yml push
+docker-compose -f docker-compose.yml push
 ```
 
 ### Start

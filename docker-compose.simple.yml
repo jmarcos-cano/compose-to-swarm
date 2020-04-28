@@ -20,7 +20,7 @@ services:
     volumes:
       - redis-vol:/data
     networks:
-      skynet:
+      - skynet
 
 networks:
   skynet:
