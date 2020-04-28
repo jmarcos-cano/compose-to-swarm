@@ -4,7 +4,7 @@ This section will give you the necessary to go full to production with Docker sw
 
 
 <img src="/img/swarm.png" class="center" alt="About me" style="width:300px;">
-
+![1](img/swarm.png)
 
 <details>
   <summary>Swarm vs K8</summary>
