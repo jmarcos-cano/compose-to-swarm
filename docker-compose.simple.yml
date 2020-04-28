@@ -9,7 +9,6 @@ services:
       - target: 5000
         published: ${HTTP_PORT:-5000}
         protocol: tcp
-        mode: host
     networks:
       - skynet
 
